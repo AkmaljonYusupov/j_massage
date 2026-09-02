@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "J Massage School",
   description: "Massaj san'ati bo'yicha professional o'quv markazi",
   icons: {
-    icon: "/logo.png",
+    icon: "/logo_title.png",
   },
 };
 
