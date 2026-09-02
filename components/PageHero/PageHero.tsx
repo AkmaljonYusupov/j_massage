@@ -11,8 +11,14 @@ interface PageHeroProps {
   titleKey: string;
   image: string;
   imageAlt?: string;
-  /** Rasmning qaysi qismi ko'rinsin: "center", "top", "50% 30%" va h.k. */
+  /** Desktop uchun rasm pozitsiyasi: "center", "top", "50% 30%" va h.k. */
   objectPosition?: string;
+  /**
+   * Mobil uchun alohida pozitsiya. Berilmasa, objectPosition ishlatiladi.
+   * Tor ekranda rasm ko'proq kesilib, "zoom" bo'lib ko'rinishi mumkin —
+   * shu prop orqali mobil uchun kamroq kesiladigan qismini tanlashingiz mumkin.
+   */
+  mobileObjectPosition?: string;
   align?: "left" | "center";
   className?: string;
 }
@@ -21,27 +27,41 @@ export function PageHero({
   titleKey,
   image,
   imageAlt = "",
-  objectPosition = "center 35%",
+  objectPosition = "center 55%",
+  mobileObjectPosition,
   align = "left",
   className,
 }: PageHeroProps) {
   const { t } = useLanguage();
+  const mobilePos = mobileObjectPosition ?? objectPosition;
 
   return (
     <section
       className={cn(
-        "relative isolate flex min-h-[52vh] items-end overflow-hidden pb-14 pt-40 sm:min-h-[60vh] sm:pb-20 sm:pt-48",
+        // Balandlikni birozgina oshirdik — pastda (qizil chizilgan joy)
+        // ko'proq bo'sh/fon ko'rinishi uchun.
+        "relative isolate flex min-h-[52vh] items-end overflow-hidden pb-16 pt-40 sm:min-h-[68vh] sm:pb-24 sm:pt-48 lg:min-h-[74vh]",
         className
       )}
     >
+      {/* Mobil versiya: alohida object-position */}
       <Image
         src={image}
         alt={imageAlt}
         fill
         priority
         sizes="100vw"
+        style={{ objectPosition: mobilePos }}
+        className="-z-10 object-cover sm:hidden"
+      />
+      {/* sm va undan katta: desktop uchun object-position */}
+      <Image
+        src={image}
+        alt={imageAlt}
+        fill
+        sizes="100vw"
         style={{ objectPosition }}
-        className="-z-10 object-cover"
+        className="-z-10 hidden object-cover sm:block"
       />
 
       <div className="absolute inset-0 -z-10 bg-revoza-ink/50" />

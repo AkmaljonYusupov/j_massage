@@ -81,12 +81,15 @@ export function LanguageSwitcher({
         <button
           type="button"
           className={cn(
-            "group inline-flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/5 pl-2 pr-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white",
+            // 1024–1280px (lg, xl emas) oralig'ida joy tejash uchun ixcham
+            // o'lcham/shrift, 1280px (xl) dan boshlab avvalgi to'liq o'lcham.
+            "group inline-flex h-10 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 pl-1.5 pr-2.5 text-xs font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white",
+            "xl:h-11 xl:gap-2 xl:pl-2 xl:pr-3.5 xl:text-sm",
             "data-[state=open]:bg-white/10 data-[state=open]:text-white",
             className
           )}
         >
-          <CurrentFlag className="h-7 w-7" />
+          <CurrentFlag className="h-6 w-6 xl:h-7 xl:w-7" />
           {current.native}
           <ChevronDown className="h-3.5 w-3.5 opacity-70 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </button>

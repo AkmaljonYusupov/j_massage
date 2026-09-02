@@ -54,6 +54,8 @@ export function MobileNav() {
         <button
           type="button"
           aria-label={t("navbar.openMenu")}
+          // Diqqat: to'liq desktop menyu "lg" (1024px) dan boshlab ko'rinadi
+          // (Navbar.tsx bilan mos), shuning uchun bu tugma ham "lg:hidden".
           className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-revoza-cream transition-colors hover:bg-white/10 lg:hidden"
         >
           <Menu className="h-5 w-5" />

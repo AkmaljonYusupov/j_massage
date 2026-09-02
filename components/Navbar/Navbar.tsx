@@ -32,20 +32,29 @@ export function Navbar() {
     return pathname.startsWith(href);
   }
 
+  // To'liq menyu yana "lg" (1024px) dan boshlab ko'rinadi (siz so'ragandek,
+  // masalan 1277px kabi kengliklarda ham matn holida chiqadi). Siqilib
+  // qolmasligi uchun 1024–1280px oralig'ida (lg, lekin hali xl emas) hamma
+  // narsa: logo, havolalar, "Qabulga yozilish" tugmasi va til almashtirgich —
+  // birozgina ixchamlashtirilgan (kichikroq shrift/padding), 1280px (xl) dan
+  // boshlab esa avvalgi to'liq o'lchamiga qaytadi.
+
   return (
     <motion.header
       initial={{ y: -28, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-50 pt-3 sm:pt-5"
+      className="fixed inset-x-0 top-0 z-50 lg:pt-5"
     >
-      <div className="container">
+      <div className="lg:container">
         <div
           className={cn(
-            "flex items-center justify-between gap-4 rounded-full border py-2.5 pl-4 pr-2 text-revoza-cream transition-all duration-300 sm:pl-6",
+            "flex items-center justify-between gap-2 py-3 pl-4 pr-3 text-revoza-cream transition-all duration-300 sm:pl-6 lg:gap-2 xl:gap-4",
+            "border-b border-white/10",
+            "lg:rounded-full lg:border lg:border-white/15 lg:py-2 lg:pl-5 lg:pr-2 xl:py-2.5 xl:pl-6",
             scrolled
-              ? "border-white/15 bg-revoza-ink/85 shadow-lg shadow-black/30 backdrop-blur-xl"
-              : "border-white/15 bg-white/[0.06] backdrop-blur-md"
+              ? "bg-revoza-ink/85 backdrop-blur-xl lg:shadow-lg lg:shadow-black/30"
+              : "bg-white/[0.08] backdrop-blur-md"
           )}
         >
           <Link
@@ -61,11 +70,11 @@ export function Navbar() {
               priority
               quality={100}
               unoptimized
-              className="h-10 w-auto sm:h-12"
+              className="h-10 w-auto sm:h-12 lg:h-9 xl:h-12"
             />
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-0 lg:flex xl:gap-1">
             {NAV_LINKS.map((link) => {
               const active = isActive(link.href);
               return (
@@ -73,7 +82,7 @@ export function Navbar() {
                   key={link.key}
                   href={link.href}
                   className={cn(
-                    "relative rounded-full px-4 py-2.5 text-[15px] font-semibold transition-colors",
+                    "relative whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-semibold transition-colors xl:px-4 xl:py-2.5 xl:text-[15px]",
                     active ? "text-white" : "text-white/80 hover:text-white"
                   )}
                 >
@@ -94,14 +103,14 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 lg:gap-2 xl:gap-3">
             <LanguageSwitcher className="hidden md:inline-flex" />
 
             <Link
               href="/contact"
-              className="hidden h-12 items-center gap-2.5 rounded-full bg-revoza-cream pl-2 pr-6 text-[15px] font-bold text-revoza-ink transition-colors hover:bg-white lg:inline-flex"
+              className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-revoza-cream pl-2 pr-4 text-[13px] font-bold text-revoza-ink transition-colors hover:bg-white lg:inline-flex xl:h-12 xl:gap-2.5 xl:pr-6 xl:text-[15px]"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream xl:h-9 xl:w-9">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
               {t("navbar.bookAppointment")}
