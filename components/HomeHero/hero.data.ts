@@ -18,5 +18,7 @@ export const TRUST_AVATARS: TrustAvatar[] = [
   },
 ];
 
-export const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1600&auto=format&fit=crop";
+// Diqqat: "public/" papkasidagi lokal rasm uchun manzil albatta "/" bilan
+// boshlanishi kerak (masalan "./images/..." emas, "/images/..." bo'lishi shart) —
+// aks holda next/image "Failed to parse src" xatosini beradi.
+export const HERO_IMAGE = "/images/hero-home.jpg";
