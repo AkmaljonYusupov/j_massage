@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "services": "Xizmatlar",
+    "blog": "Blog",
+    "pages": "Sahifalar",
+    "pagesSubmenu": {
+      "team": "Jamoamiz",
+      "pricing": "Narxlar",
+      "faq": "Savol-javob",
+      "testimonials": "Fikrlar"
+    },
+    "contact": "Aloqa",
+    "bookAppointment": "Qabulga yozilish",
+    "openMenu": "Menyuni ochish",
+    "closeMenu": "Yopish"
+  },
+  "hero": {
+    "badge": "Premium SPA tajribasi",
+    "titleLine1": "Tanangiz, ongingiz",
+    "titleLine2": "va ruhingizni tiklang",
+    "description": "Kundalik stressdan uzoqlashing va tinchlantiruvchi sog'lomlashtirish tajribasiga sho'ng'ing. Bizning davolash usullarimiz tanangizni jonlantirish, ongingizni bo'shashtirish uchun yaratilgan.",
+    "ctaPrimary": "Barcha xizmatlar",
+    "reviews": "5 ming sharh",
+    "trustedClients": "25 ming+ ishonchli mijoz",
+    "featureOne": "Tana uchun mo'ljallangan tinchlantiruvchi terapiyalar",
+    "featureTwo": "Tajribali mutaxassislardan yuqori sifatli sog'lomlashtirish xizmati"
+  }
+}

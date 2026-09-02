@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 20% 97%;
+    --foreground: 80 20% 6%;
+    --primary: 80 20% 6%;
+    --primary-foreground: 60 20% 97%;
+    --secondary: 84 17% 34%;
+    --secondary-foreground: 60 20% 97%;
+    --border: 80 10% 85%;
+    --radius: 999px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-revoza-cream text-revoza-ink antialiased;
+  }
+}
+
+/* Hide scrollbar for the offcanvas nav links on very small heights */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
