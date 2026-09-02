@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 
+import { Navbar } from "@/components/Navbar/Navbar";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+
 import "./globals.css";
 
-const manrope = Manrope({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-manrope",
-});
+const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Revoza — Premium Spa Experience",
-  description:
-    "Revitalize your body, mind and spirit today with Revoza's premium spa treatments.",
+  title: "J Massage School",
+  description: "Massaj san'ati bo'yicha professional o'quv markazi",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -22,9 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="uz" className={manrope.variable}>
-      <body>
-        <LanguageProvider>{children}</LanguageProvider>
+    <html lang="uz">
+      <body className={inter.className}>
+        <LanguageProvider>
+          <Navbar />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

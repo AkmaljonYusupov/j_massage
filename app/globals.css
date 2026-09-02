@@ -21,10 +21,39 @@
   }
   html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(125, 107, 169, 0.5) transparent;
   }
   body {
-    @apply bg-revoza-cream text-revoza-ink antialiased;
+     @apply bg-revoza-ink text-revoza-cream antialiased;
   }
+}
+
+/* Page scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(125, 107, 169, 0.5);
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(125, 107, 169, 0.8);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 /* Hide scrollbar for the offcanvas nav links on very small heights */

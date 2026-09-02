@@ -2,19 +2,29 @@
   "navbar": {
     "home": "Bosh sahifa",
     "about": "Biz haqimizda",
-    "services": "Xizmatlar",
-    "blog": "Blog",
-    "pages": "Sahifalar",
-    "pagesSubmenu": {
-      "team": "Jamoamiz",
-      "pricing": "Narxlar",
-      "faq": "Savol-javob",
-      "testimonials": "Fikrlar"
-    },
-    "contact": "Aloqa",
+    "courses": "Kurslar",
+    "contact": "Kontaktlar",
     "bookAppointment": "Qabulga yozilish",
+    "menu": "Menyu",
     "openMenu": "Menyuni ochish",
     "closeMenu": "Yopish"
+  },
+  "common": {
+    "comingSoon": "Bu sahifa tayyorlanmoqda. Tez orada to'liq ma'lumot joylashtiriladi."
+  },
+  "pages": {
+    "about": {
+      "intro": "J Massage School — massaj san'atini kasbiy darajada o'rgatadigan o'quv markazi."
+    },
+    "courses": {
+      "intro": "Boshlang'ich va professional darajadagi massaj kurslari."
+    },
+    "contact": {
+      "intro": "Savollaringiz bo'lsa, biz bilan bog'laning.",
+      "phoneLabel": "Telefon",
+      "addressLabel": "Manzil",
+      "address": "Toshkent shahri"
+    }
   },
   "hero": {
     "badge": "Premium SPA tajribasi",
