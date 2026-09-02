@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar/Navbar";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
 import "./globals.css";
+import { Footer } from "@/components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Navbar />
           {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

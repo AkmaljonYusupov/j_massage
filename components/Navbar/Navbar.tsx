@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,14 +15,6 @@ import { MobileNav } from "./MobileNav";
 export function Navbar() {
   const { t } = useLanguage();
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   function isActive(href: string) {
     if (href === "/") {
@@ -52,9 +43,9 @@ export function Navbar() {
             "flex items-center justify-between gap-2 py-3 pl-4 pr-3 text-revoza-cream transition-all duration-300 sm:pl-6 lg:gap-2 xl:gap-4",
             "border-b border-white/10",
             "lg:rounded-full lg:border lg:border-white/15 lg:py-2 lg:pl-5 lg:pr-2 xl:py-2.5 xl:pl-6",
-            scrolled
-              ? "bg-revoza-ink/85 backdrop-blur-xl lg:shadow-lg lg:shadow-black/30"
-              : "bg-white/[0.08] backdrop-blur-md"
+            // Scroll holatidan qat'i nazar fon bir xil (shisha effekti) —
+            // scroll qilinganda rangi o'zgarmaydi.
+            "bg-white/[0.08] backdrop-blur-md"
           )}
         >
           <Link

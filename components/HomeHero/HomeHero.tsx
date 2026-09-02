@@ -25,25 +25,34 @@ export function HomeHero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[860px] w-full items-end overflow-hidden lg:min-h-[920px]">
-      {/* Background image */}
-      <Image
-        src={HERO_IMAGE}
-        alt="Revoza spa"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-[75%_40%]"
-      />
-      {/* Gradient overlays for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50" />
+    <section className="relative flex min-h-[860px] w-full items-center overflow-hidden lg:min-h-[920px]">
+      {/*
+        Fon rasm "fixed" qilib qo'yildi — scroll qilinganda u joyidan
+        qimirlamaydi (butun ekranga bog'langan), shu tufayli sahifa mazmuni
+        uning ustidan siljib o'tayotganda "rasm ichiga kirib ketayotgandek"
+        klassik parallaks effekti hosil bo'ladi. Undan keyingi bo'limlar
+        (o'zining background rangi bilan) scroll paytida shu fon rasmni
+        avtomatik ustidan yopib ketadi.
+      */}
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src={HERO_IMAGE}
+          alt="Revoza spa"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[75%_40%]"
+        />
+        {/* Gradient overlays for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50" />
+      </div>
 
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="container relative z-10 flex flex-col gap-10 pb-16 pt-40 text-revoza-cream lg:pb-20 lg:pt-56"
+        className="container relative z-10 flex flex-col gap-10 pb-8 pt-8 text-revoza-cream lg:pb-10 lg:pt-10"
       >
         <div className="max-w-3xl">
           <motion.span
