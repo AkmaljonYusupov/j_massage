@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Loader2, Phone, Send } from "lucide-react";
+import { ArrowUpRight, Instagram, Loader2, Phone, Send } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { SpaLines } from "@/components/SpaLines/SpaLines";
 import { cn } from "@/lib/utils";
 import {
   CONTACT_INSTAGRAM_URL,
@@ -61,7 +62,114 @@ function countDigits(value: string) {
   return value.replace(/\D/g, "").replace(/^998/, "").length;
 }
 
-type Status = "idle" | "sending" | "sent" | "error";
+const pillItem = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+};
+
+interface ContactPillProps {
+  href: string;
+  external?: boolean;
+  /** Ekran o'quvchilar uchun - vizual ko'rinmaydi */
+  label: string;
+  value: string;
+  icon: React.ReactNode;
+  /**
+   * true bo'lsa, kichik ekranda faqat ikonka qoladi (matn yashirinadi) -
+   * shu tufayli uchala havola mobilda ham bitta qatorga sig'adi.
+   */
+  compactOnMobile?: boolean;
+  /** Telefon uchun - "hoziroq qo'ng'iroq qiling" ma'nosidagi pulsatsiya */
+  pulse?: boolean;
+  /** Har bir tarmoq uchun o'z rangi (to'liq Tailwind klasslari) */
+  iconHoverClass: string;
+  borderHoverClass: string;
+  washClass: string;
+  ringClass: string;
+}
+
+/**
+ * Ixcham "pill" ko'rinishidagi aloqa havolasi.
+ * Hover: rangli gradient yoyiladi, ikonka to'ladi va biroz buriladi,
+ * o'ng tarafdan strelka sirg'alib chiqadi.
+ */
+function ContactPill({
+  href,
+  external,
+  label,
+  value,
+  icon,
+  compactOnMobile = false,
+  pulse = false,
+  iconHoverClass,
+  borderHoverClass,
+  washClass,
+  ringClass,
+}: ContactPillProps) {
+  return (
+    <motion.a
+      variants={pillItem}
+      href={href}
+      aria-label={`${label}: ${value}`}
+      title={value}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className={cn(
+        "group relative inline-flex shrink-0 items-center gap-2.5 overflow-hidden rounded-full border border-revoza-ink/10 bg-white/60 p-1.5 outline-none transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_8px_20px_-14px_rgba(60,50,40,0.55)]",
+        "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffef6]",
+        compactOnMobile ? "pr-1.5 sm:pr-3.5" : "pr-3 sm:pr-3.5",
+        borderHoverClass,
+        ringClass
+      )}
+    >
+      {/* hover'da chapdan o'ngga yoyiladigan rangli gradient */}
+      <span
+        className={cn(
+          "pointer-events-none absolute inset-0 origin-left scale-x-0 rounded-full opacity-0 transition-all duration-500 ease-out group-hover:scale-x-100 group-hover:opacity-100",
+          washClass
+        )}
+      />
+
+      <span className="relative flex shrink-0">
+        <span
+          className={cn(
+            "flex h-9 w-9 items-center justify-center rounded-full bg-revoza-ink/[0.06] text-revoza-ink/55 transition-all duration-300 group-hover:scale-105 group-hover:-rotate-6",
+            iconHoverClass
+          )}
+        >
+          {icon}
+        </span>
+
+        {pulse && (
+          <span className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-revoza-sage opacity-70" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-revoza-sage ring-2 ring-[#fffef6]" />
+          </span>
+        )}
+      </span>
+
+      <span
+        className={cn(
+          "relative whitespace-nowrap text-[13.5px] font-bold tabular-nums tracking-[-0.01em] sm:text-[15px]",
+          compactOnMobile && "hidden sm:inline"
+        )}
+      >
+        {value}
+      </span>
+
+      {/* hover'da sirg'alib chiqadigan strelka */}
+      <span
+        className={cn(
+          "relative hidden w-0 shrink-0 -translate-x-1 overflow-hidden opacity-0 transition-all duration-300 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100 sm:block",
+          compactOnMobile && "hidden sm:block"
+        )}
+      >
+        <ArrowUpRight className="h-4 w-4" />
+      </span>
+    </motion.a>
+  );
+}
+
+type Status = "idle" | "sending" | "sent" | "error";type Status = "idle" | "sending" | "sent" | "error";type Status = "idle" | "sending" | "sent" | "error";type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactSection() {
   const { t } = useLanguage();
@@ -107,8 +215,7 @@ export function ContactSection() {
 
   return (
     <section className="relative overflow-hidden bg-[#fffef6] py-20 text-revoza-ink sm:py-28">
-      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-revoza-sage/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#7D6BA9]/10 blur-3xl" />
+      <SpaLines />
 
       <div className="container relative">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -143,65 +250,45 @@ export function ContactSection() {
 
             <motion.div
               variants={item}
-              className="mt-10 grid max-w-md gap-3"
+              className="mt-8 flex flex-wrap items-center gap-2 sm:gap-2.5"
             >
-              {/* Telefon boksi */}
-              <a
+              <ContactPill
                 href={CONTACT_PHONE_HREF}
-                className="group flex items-center gap-3.5 rounded-2xl border border-revoza-ink/10 bg-white/70 p-4 shadow-[0_4px_14px_-10px_rgba(60,50,40,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-revoza-sage/30"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-revoza-sage text-white transition-all duration-300 group-hover:scale-105 group-hover:bg-revoza-sage-dark">
-                  <Phone className="h-[18px] w-[18px]" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-revoza-ink/50">
-                    {t("contact.phoneLabel")}
-                  </span>
-                  <span className="block truncate text-[15px] font-bold">
-                    {CONTACT_PHONE_DISPLAY}
-                  </span>
-                </span>
-              </a>
+                label={t("contact.phoneLabel")}
+                value={CONTACT_PHONE_DISPLAY}
+                icon={<Phone className="h-[17px] w-[17px]" />}
+                pulse
+                iconHoverClass="group-hover:bg-revoza-sage group-hover:text-white"
+                borderHoverClass="hover:border-revoza-sage/40"
+                washClass="bg-gradient-to-r from-revoza-sage/12 to-transparent"
+                ringClass="focus-visible:ring-revoza-sage/40"
+              />
 
-              {/* Telegram boksi */}
-              <a
+              <ContactPill
                 href={CONTACT_TELEGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3.5 rounded-2xl border border-revoza-ink/10 bg-white/70 p-4 shadow-[0_4px_14px_-10px_rgba(60,50,40,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-[#229ED9]/40"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-revoza-ink/5 text-revoza-ink/60 transition-all duration-300 group-hover:scale-105 group-hover:bg-[#229ED9] group-hover:text-white">
-                  <TelegramIcon className="h-[18px] w-[18px]" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-revoza-ink/50">
-                    Telegram
-                  </span>
-                  <span className="block truncate text-[15px] font-bold">
-                    @janna_masagee
-                  </span>
-                </span>
-              </a>
+                external
+                label="Telegram"
+                value="@janna_masagee"
+                compactOnMobile
+                icon={<TelegramIcon className="h-[17px] w-[17px]" />}
+                iconHoverClass="group-hover:bg-[#229ED9] group-hover:text-white"
+                borderHoverClass="hover:border-[#229ED9]/40"
+                washClass="bg-gradient-to-r from-[#229ED9]/12 to-transparent"
+                ringClass="focus-visible:ring-[#229ED9]/40"
+              />
 
-              {/* Instagram boksi */}
-              <a
+              <ContactPill
                 href={CONTACT_INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3.5 rounded-2xl border border-revoza-ink/10 bg-white/70 p-4 shadow-[0_4px_14px_-10px_rgba(60,50,40,0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-[#E1306C]/40"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-revoza-ink/5 text-revoza-ink/60 transition-all duration-300 group-hover:scale-105 group-hover:bg-[#E1306C] group-hover:text-white">
-                  <Instagram className="h-[18px] w-[18px]" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs text-revoza-ink/50">
-                    Instagram
-                  </span>
-                  <span className="block truncate text-[15px] font-bold">
-                    @janna_massagee
-                  </span>
-                </span>
-              </a>
+                external
+                label="Instagram"
+                value="@janna_massagee"
+                compactOnMobile
+                icon={<Instagram className="h-[17px] w-[17px]" />}
+                iconHoverClass="group-hover:bg-[#E1306C] group-hover:text-white"
+                borderHoverClass="hover:border-[#E1306C]/40"
+                washClass="bg-gradient-to-r from-[#E1306C]/12 to-transparent"
+                ringClass="focus-visible:ring-[#E1306C]/40"
+              />
             </motion.div>
           </motion.div>
 

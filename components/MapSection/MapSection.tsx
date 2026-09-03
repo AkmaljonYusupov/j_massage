@@ -24,7 +24,7 @@ export function MapSection() {
           className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-revoza-ink/15 bg-white/70 px-4 py-2 text-xs font-semibold tracking-wide">
+            <span className="inline-flex items-center gap-2 rounded-full border border-revoza-ink/15 bg-white/70 px-4 py-2 text-xs font-semibold tracking-wide backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-revoza-sage" />
               {t("map.badge")}
             </span>
@@ -63,7 +63,6 @@ export function MapSection() {
             className="block h-[340px] w-full sm:h-[420px] lg:h-[480px]"
           />
 
-          {/* Xarita ustidagi kichik manzil kartasi */}
           <div className="pointer-events-none absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-xs">
             <div className="pointer-events-auto flex items-center gap-3.5 rounded-2xl border border-revoza-ink/10 bg-[#fffef6]/95 p-4 shadow-[0_6px_20px_-14px_rgba(60,50,40,0.5)] backdrop-blur-sm">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-revoza-sage text-white">
