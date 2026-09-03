@@ -25,7 +25,7 @@ export function HomeHero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[860px] w-full items-center overflow-hidden lg:min-h-[920px]">
+    <section className="relative flex min-h-[860px] w-full items-start overflow-hidden lg:min-h-[920px]">
       {/*
         Fon rasm "fixed" qilib qo'yildi — scroll qilinganda u joyidan
         qimirlamaydi (butun ekranga bog'langan), shu tufayli sahifa mazmuni
@@ -52,7 +52,7 @@ export function HomeHero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="container relative z-10 flex flex-col gap-10 pb-8 pt-8 text-revoza-cream lg:pb-10 lg:pt-10"
+        className="container relative z-10 flex flex-col gap-10 pb-10 pt-32 text-revoza-cream lg:pb-10 lg:pt-44"
       >
         <div className="max-w-3xl">
           <motion.span

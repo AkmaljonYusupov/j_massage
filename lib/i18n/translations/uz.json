@@ -36,5 +36,18 @@
     "trustedClients": "25 ming+ ishonchli mijoz",
     "featureOne": "Tana uchun mo'ljallangan tinchlantiruvchi terapiyalar",
     "featureTwo": "Tajribali mutaxassislardan yuqori sifatli sog'lomlashtirish xizmati"
+  },
+  "homeAbout": {
+    "badge": "Biz haqimizda",
+    "titleLine1": "Massaj kasbiga",
+    "titleLine2": "birinchi qadamingiz",
+    "description": "J Massage School - massaj san'atini noldan kasbiy darajagacha o'rgatadigan o'quv markazi. Bu yerda siz nazariyani emas, balki real mijozlar bilan ishlash ko'nikmasini olasiz va kursni tugatganda ishga tayyor mutaxassis bo'lasiz.",
+    "featureOne": "Amaliyotga asoslangan darslar va kichik guruhlar",
+    "featureTwo": "Kurs yakunida sertifikat va ish boshlash bo'yicha yordam",
+    "cta": "Batafsil ma'lumot",
+    "experience": "Sertifikatlangan o'quv markazi",
+    "helpLabel": "Savolingiz bormi?",
+    "founderName": "Janna",
+    "founderRole": "Asoschi va bosh murabbiy"
   }
 }

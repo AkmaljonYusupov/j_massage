@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,6 +16,17 @@ import { MobileNav } from "./MobileNav";
 export function Navbar() {
   const { t } = useLanguage();
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  // Bosh sahifadagi About bo'limi och rangda (#fffef6). Navbar matni oq
+  // bo'lgani uchun u yerda ko'rinmay qolmasligi kerak: tepada shaffof shisha
+  // effekti, pastga tushganda to'q fonli qattiq holatga o'tadi.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function isActive(href: string) {
     if (href === "/") {
@@ -22,13 +34,6 @@ export function Navbar() {
     }
     return pathname.startsWith(href);
   }
-
-  // To'liq menyu yana "lg" (1024px) dan boshlab ko'rinadi (siz so'ragandek,
-  // masalan 1277px kabi kengliklarda ham matn holida chiqadi). Siqilib
-  // qolmasligi uchun 1024–1280px oralig'ida (lg, lekin hali xl emas) hamma
-  // narsa: logo, havolalar, "Qabulga yozilish" tugmasi va til almashtirgich —
-  // birozgina ixchamlashtirilgan (kichikroq shrift/padding), 1280px (xl) dan
-  // boshlab esa avvalgi to'liq o'lchamiga qaytadi.
 
   return (
     <motion.header
@@ -43,9 +48,9 @@ export function Navbar() {
             "flex items-center justify-between gap-2 py-3 pl-4 pr-3 text-revoza-cream transition-all duration-300 sm:pl-6 lg:gap-2 xl:gap-4",
             "border-b border-white/10",
             "lg:rounded-full lg:border lg:border-white/15 lg:py-2 lg:pl-5 lg:pr-2 xl:py-2.5 xl:pl-6",
-            // Scroll holatidan qat'i nazar fon bir xil (shisha effekti) —
-            // scroll qilinganda rangi o'zgarmaydi.
-            "bg-white/[0.08] backdrop-blur-md"
+            scrolled
+              ? "border-transparent bg-revoza-ink/95 shadow-lg shadow-black/25 backdrop-blur-xl lg:border-white/10"
+              : "bg-white/[0.08] backdrop-blur-md"
           )}
         >
           <Link

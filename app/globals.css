@@ -19,14 +19,22 @@
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
     scrollbar-width: thin;
     scrollbar-color: rgba(125, 107, 169, 0.5) transparent;
   }
+
+  html,
   body {
-     @apply bg-revoza-ink text-revoza-cream antialiased;
+    font-family: var(--font-bricolage), var(--font-inter), ui-sans-serif,
+      system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-revoza-ink text-revoza-cream antialiased;
   }
 }
 
