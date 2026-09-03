@@ -3,6 +3,7 @@
 import { PageHero } from "@/components/PageHero/PageHero";
 import { ContactSection } from "@/components/ContactSection/ContactSection";
 import { MapSection } from "@/components/MapSection/MapSection";
+import { GallerySection } from "@/components/GallerySection/GallerySection";
 
 export default function ContactPage() {
   return (
@@ -15,6 +16,7 @@ export default function ContactPage() {
       />
       <ContactSection />
       <MapSection />
+      <GallerySection />
     </main>
   );
 }
