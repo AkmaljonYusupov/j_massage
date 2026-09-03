@@ -49,5 +49,27 @@
     "helpLabel": "Savolingiz bormi?",
     "founderName": "Janna",
     "founderRole": "Asoschi va bosh murabbiy"
+  },
+  "contact": {
+    "badge": "Bog'lanish",
+    "title": "Kurslar haqida savolingiz bormi?",
+    "description": "Telefon, Telegram yoki quyidagi forma orqali murojaat qiling - qisqa vaqt ichida javob beramiz.",
+    "phoneLabel": "Telefon raqam",
+    "formTitle": "Ariza qoldiring",
+    "fullNamePlaceholder": "Ism va familiya",
+    "messagePlaceholder": "Xabaringizni yozing...",
+    "submit": "Yuborish",
+    "successMessage": "Rahmat! Arizangiz qabul qilindi, tez orada bog'lanamiz.",
+    "errorName": "Ism va familiyani to'liq kiriting",
+    "errorPhone": "Telefon raqamni to'liq kiriting",
+    "errorMessage": "Xabar juda qisqa",
+    "errorSubmit": "Yuborishda xatolik. Iltimos, qayta urinib ko'ring."
+  },
+  "map": {
+    "badge": "Manzil",
+    "title": "Bizni xaritadan toping",
+    "addressLabel": "O'quv markaz manzili",
+    "address": "Toshkent shahri",
+    "openButton": "Yo'nalishni ochish"
   }
 }

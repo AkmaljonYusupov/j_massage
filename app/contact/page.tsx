@@ -1,6 +1,8 @@
 "use client";
 
 import { PageHero } from "@/components/PageHero/PageHero";
+import { ContactSection } from "@/components/ContactSection/ContactSection";
+import { MapSection } from "@/components/MapSection/MapSection";
 
 export default function ContactPage() {
   return (
@@ -9,7 +11,10 @@ export default function ContactPage() {
         titleKey="navbar.contact"
         image="/images/hero-contact.jpg"
         objectPosition="center 40%"
+        waveClassName="fill-[#fffef6]"
       />
+      <ContactSection />
+      <MapSection />
     </main>
   );
 }

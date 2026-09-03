@@ -8,7 +8,7 @@ export default function AboutPage() {
       <PageHero
         titleKey="navbar.about"
         image="/images/hero-about.jpg"
-        objectPosition="center 20%"
+        objectPosition="center 1%"
       />
     </main>
   );
