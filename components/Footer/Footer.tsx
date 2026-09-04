@@ -3,15 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Instagram } from "lucide-react";
+import { ArrowUpRight, Award, Instagram, Users } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
   FOOTER_COURSES,
   FOOTER_INSTAGRAM_URL,
   FOOTER_LINKS,
-  FOOTER_PHONE_DISPLAY,
-  FOOTER_PHONE_HREF,
+  FOOTER_PHONES,
   FOOTER_TELEGRAM_URL,
 } from "./footer.data";
 
@@ -28,7 +27,7 @@ function TelegramIcon({ className }: { className?: string }) {
   );
 }
 
-/** Aylanuvchi "Bog'lanish" belgisi (o'ng yuqorida) */
+/** Aylanuvchi "Bog'lanish" belgisi */
 function RotatingBadge({ text }: { text: string }) {
   const reduceMotion = useReducedMotion();
   const ring = `${text} \u2022 ${text} \u2022 ${text} \u2022 `;
@@ -37,7 +36,7 @@ function RotatingBadge({ text }: { text: string }) {
     <Link
       href="/contact"
       aria-label={text}
-      className="relative flex h-32 w-32 shrink-0 items-center justify-center transition-transform duration-300 hover:scale-105 lg:h-36 lg:w-36"
+      className="relative flex h-28 w-28 shrink-0 items-center justify-center transition-transform duration-300 hover:scale-105 sm:h-32 sm:w-32 lg:h-36 lg:w-36"
     >
       <motion.svg
         viewBox="0 0 200 200"
@@ -66,8 +65,8 @@ function RotatingBadge({ text }: { text: string }) {
         </text>
       </motion.svg>
 
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-revoza-sage-dark lg:h-[72px] lg:w-[72px]">
-        <ArrowUpRight className="h-6 w-6" />
+      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-revoza-sage-dark sm:h-16 sm:w-16 lg:h-[72px] lg:w-[72px]">
+        <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6" />
       </span>
     </Link>
   );
@@ -79,13 +78,12 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-revoza-sage text-white">
-      {/* yumshoq yorug'lik - rasmdagi gradient taassuroti */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-black/25" />
 
       <div className="container relative">
         {/* --- Yuqori qism --- */}
-        <div className="flex flex-col gap-10 py-16 sm:flex-row sm:items-center sm:justify-between sm:gap-8 lg:py-20">
-          <h2 className="max-w-2xl text-[1.9rem] font-extrabold leading-[1.2] tracking-tight sm:text-[2.3rem] lg:text-[2.6rem]">
+        <div className="flex flex-col gap-8 py-12 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-16 lg:py-20">
+          <h2 className="max-w-2xl text-[1.6rem] font-extrabold leading-[1.2] tracking-tight sm:text-[2.1rem] lg:text-[2.6rem]">
             {t("footer.headlineLine1")}
             <br className="hidden sm:block" /> {t("footer.headlineLine2")}
           </h2>
@@ -93,12 +91,33 @@ export function Footer() {
           <RotatingBadge text={t("footer.badge")} />
         </div>
 
+        {/* --- Afzalliklar --- */}
+        <div className="grid gap-3 pb-12 sm:grid-cols-3 sm:gap-4">
+          {[
+            { icon: Users, key: "footer.benefitPractice" },
+            { icon: Award, key: "footer.benefitCertificate" },
+            { icon: ArrowUpRight, key: "footer.benefitJob" },
+          ].map(({ icon: Icon, key }) => (
+            <div
+              key={key}
+              className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/[0.07] px-4 py-3.5"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
+                <Icon className="h-4 w-4" />
+              </span>
+              <span className="text-sm font-semibold leading-snug">
+                {t(key)}
+              </span>
+            </div>
+          ))}
+        </div>
+
         <div className="h-px w-full bg-white/20" />
 
         {/* --- Ustunlar --- */}
-        <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:py-14">
           {/* Logo va tavsif */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" aria-label="J Massage School" className="inline-flex">
               <Image
                 src="/logo-white.png"
@@ -107,11 +126,11 @@ export function Footer() {
                 height={652}
                 quality={100}
                 unoptimized
-                className="h-12 w-auto"
+                className="h-11 w-auto sm:h-12"
               />
             </Link>
 
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/75">
               {t("footer.description")}
             </p>
 
@@ -139,7 +158,9 @@ export function Footer() {
 
           {/* Tezkor havolalar */}
           <div>
-            <h3 className="text-lg font-bold">{t("footer.quickLinks")}</h3>
+            <h3 className="text-base font-bold sm:text-lg">
+              {t("footer.quickLinks")}
+            </h3>
             <ul className="mt-5 space-y-3">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.key}>
@@ -159,7 +180,9 @@ export function Footer() {
 
           {/* Kurslar */}
           <div>
-            <h3 className="text-lg font-bold">{t("footer.ourCourses")}</h3>
+            <h3 className="text-base font-bold sm:text-lg">
+              {t("footer.ourCourses")}
+            </h3>
             <ul className="mt-5 space-y-3">
               {FOOTER_COURSES.map((link) => (
                 <li key={link.key}>
@@ -177,9 +200,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Aloqa ma'lumotlari */}
+          {/* Aloqa */}
           <div>
-            <h3 className="text-lg font-bold">{t("footer.contactInfo")}</h3>
+            <h3 className="text-base font-bold sm:text-lg">
+              {t("footer.contactInfo")}
+            </h3>
 
             <p className="mt-5 text-sm text-white/60">
               {t("footer.addressLabel")}
@@ -191,19 +216,23 @@ export function Footer() {
             <p className="mt-6 text-sm text-white/60">
               {t("footer.phoneLabel")}
             </p>
-            <a
-              href={FOOTER_PHONE_HREF}
-              className="mt-1.5 inline-block text-[15px] font-bold transition-opacity hover:opacity-80"
-            >
-              {FOOTER_PHONE_DISPLAY}
-            </a>
+            <div className="mt-1.5 flex flex-col gap-1.5">
+              {FOOTER_PHONES.map((phone) => (
+                <a
+                  key={phone.href}
+                  href={phone.href}
+                  className="text-[15px] font-bold tabular-nums transition-opacity hover:opacity-80"
+                >
+                  {phone.display}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="h-px w-full bg-white/20" />
 
-        {/* --- Copyright --- */}
-        <p className="py-7 text-center text-sm text-white/75">
+        <p className="py-6 text-center text-xs text-white/75 sm:py-7 sm:text-sm">
           {t("footer.copyright").replace("{year}", String(year))}
         </p>
       </div>

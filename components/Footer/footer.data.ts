@@ -11,16 +11,25 @@ export const FOOTER_LINKS: FooterLink[] = [
   { key: "navbar.contact", href: "/contact" },
 ];
 
-/** "Kurslarimiz" ustuni */
+/** "Kurslarimiz" ustuni - o'quv markazining asosiy yo'nalishlari */
 export const FOOTER_COURSES: FooterLink[] = [
-  { key: "footer.courses.classic", href: "/courses" },
-  { key: "footer.courses.sport", href: "/courses" },
-  { key: "footer.courses.antiCellulite", href: "/courses" },
-  { key: "footer.courses.relax", href: "/courses" },
   { key: "footer.courses.children", href: "/courses" },
+  { key: "footer.courses.adults", href: "/courses" },
+  { key: "footer.courses.hijama", href: "/courses" },
+  { key: "footer.courses.hirudo", href: "/courses" },
+  { key: "footer.courses.fire", href: "/courses" },
+  { key: "footer.courses.speech", href: "/courses" },
 ];
 
-export const FOOTER_PHONE_DISPLAY = "+998 97 715 51 82";
-export const FOOTER_PHONE_HREF = "tel:+998977155182";
+export interface FooterPhone {
+  display: string;
+  href: string;
+}
+
+export const FOOTER_PHONES: FooterPhone[] = [
+  { display: "+998 97 715 51 82", href: "tel:+998977155182" },
+  { display: "+998 95 021 99 90", href: "tel:+998950219990" },
+];
+
 export const FOOTER_INSTAGRAM_URL = "https://www.instagram.com/janna_massagee";
 export const FOOTER_TELEGRAM_URL = "https://t.me/janna_masagee";
