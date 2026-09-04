@@ -91,5 +91,17 @@
       "fire": "Olovli massaj",
       "speech": "Logopedik massaj"
     }
+  },
+  "aboutIntro": {
+    "badge": "Biz haqimizda",
+    "titleLine1": "Bilim, amaliyot va",
+    "titleLine2": "g'amxo'rlik bir joyda",
+    "description": "Biz massajni kasb sifatida o'rgatamiz: nazariya, real mijozlar bilan amaliyot va tajribali murabbiylar nazorati. Har bir shogird kursni tugatganda mustaqil ishlashga tayyor bo'ladi.",
+    "featureOne": "Har bir dars amaliy mashg'ulot asosida o'tiladi",
+    "featureTwo": "Kichik guruhlar va ustoz nazorati ostida praktika",
+    "statGraduates": "Kursni tamomlagan va ishlayotgan shogirdlar",
+    "statCourses": "Massaj va terapiya yo'nalishlari",
+    "callAt": "Qo'ng'iroq qiling:",
+    "cta": "Hoziroq bog'laning"
   }
 }
