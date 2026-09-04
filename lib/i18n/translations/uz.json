@@ -129,5 +129,11 @@
     "valuesTitle": "Qadriyatlarimiz",
     "valuesText": "Halollik, xavfsiz texnika va mijozga g'amxo'rlik - biz o'rgatadigan har bir usulning asosi.",
     "valuesNote": "Sifat va xavfsizlik birinchi"
+  },
+  "instagram": {
+    "badge": "Instagram",
+    "title": "Darslarimiz va amaliyot lavhalari",
+    "cta": "Profilga o'tish",
+    "playLabel": "Videoni ochish"
   }
 }

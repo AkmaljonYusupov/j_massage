@@ -3,6 +3,7 @@
 import { AboutIntro } from "@/components/AboutIntro/AboutIntro";
 import { ApproachSection } from "@/components/ApproachSection/ApproachSection";
 import { GallerySection } from "@/components/GallerySection/GallerySection";
+import { InstagramSection } from "@/components/InstagramSection/InstagramSection";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { TeamSection } from "@/components/TeamSection/TeamSection";
 
@@ -17,6 +18,7 @@ export default function AboutPage() {
       />
       <AboutIntro />
       <ApproachSection />
+      <InstagramSection />
       <TeamSection />
       <GallerySection />
     </main>
