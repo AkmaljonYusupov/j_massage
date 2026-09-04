@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Award, Instagram, Users } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
@@ -27,51 +26,6 @@ function TelegramIcon({ className }: { className?: string }) {
   );
 }
 
-/** Aylanuvchi "Bog'lanish" belgisi */
-function RotatingBadge({ text }: { text: string }) {
-  const reduceMotion = useReducedMotion();
-  const ring = `${text} \u2022 ${text} \u2022 ${text} \u2022 `;
-
-  return (
-    <Link
-      href="/contact"
-      aria-label={text}
-      className="relative flex h-28 w-28 shrink-0 items-center justify-center transition-transform duration-300 hover:scale-105 sm:h-32 sm:w-32 lg:h-36 lg:w-36"
-    >
-      <motion.svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 h-full w-full"
-        animate={reduceMotion ? undefined : { rotate: 360 }}
-        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        aria-hidden="true"
-      >
-        <defs>
-          <path
-            id="footer-badge-circle"
-            d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"
-            fill="none"
-          />
-        </defs>
-        <text
-          fill="currentColor"
-          className="text-white"
-          fontSize="15"
-          fontWeight="600"
-          letterSpacing="2.5"
-        >
-          <textPath href="#footer-badge-circle" startOffset="0">
-            {ring}
-          </textPath>
-        </text>
-      </motion.svg>
-
-      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-revoza-sage-dark sm:h-16 sm:w-16 lg:h-[72px] lg:w-[72px]">
-        <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6" />
-      </span>
-    </Link>
-  );
-}
-
 export function Footer() {
   const { t } = useLanguage();
   const year = new Date().getFullYear();
@@ -82,34 +36,11 @@ export function Footer() {
 
       <div className="container relative">
         {/* --- Yuqori qism --- */}
-        <div className="flex flex-col gap-8 py-12 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-16 lg:py-20">
+        <div className="py-12 sm:py-16 lg:py-20">
           <h2 className="max-w-2xl text-[1.6rem] font-extrabold leading-[1.2] tracking-tight sm:text-[2.1rem] lg:text-[2.6rem]">
             {t("footer.headlineLine1")}
             <br className="hidden sm:block" /> {t("footer.headlineLine2")}
           </h2>
-
-          <RotatingBadge text={t("footer.badge")} />
-        </div>
-
-        {/* --- Afzalliklar --- */}
-        <div className="grid gap-3 pb-12 sm:grid-cols-3 sm:gap-4">
-          {[
-            { icon: Users, key: "footer.benefitPractice" },
-            { icon: Award, key: "footer.benefitCertificate" },
-            { icon: ArrowUpRight, key: "footer.benefitJob" },
-          ].map(({ icon: Icon, key }) => (
-            <div
-              key={key}
-              className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/[0.07] px-4 py-3.5"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
-                <Icon className="h-4 w-4" />
-              </span>
-              <span className="text-sm font-semibold leading-snug">
-                {t(key)}
-              </span>
-            </div>
-          ))}
         </div>
 
         <div className="h-px w-full bg-white/20" />

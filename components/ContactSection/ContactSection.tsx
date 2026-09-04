@@ -169,7 +169,7 @@ function ContactPill({
   );
 }
 
-type Status = "idle" | "sending" | "sent" | "error";type Status = "idle" | "sending" | "sent" | "error";type Status = "idle" | "sending" | "sent" | "error";type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactSection() {
   const { t } = useLanguage();
