@@ -1,5 +1,6 @@
 "use client";
 
+import { GallerySection } from "@/components/GallerySection/GallerySection";
 import { PageHero } from "@/components/PageHero/PageHero";
 
 export default function AboutPage() {
@@ -9,7 +10,9 @@ export default function AboutPage() {
         titleKey="navbar.about"
         image="/images/hero-about.jpg"
         objectPosition="center 1%"
+        waveClassName="fill-[#fffef6]"
       />
+      <GallerySection />
     </main>
   );
 }
