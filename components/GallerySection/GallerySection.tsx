@@ -102,7 +102,7 @@ export function GallerySection() {
   }, [reduceMotion]);
 
   return (
-    <section className="relative overflow-hidden bg-[#fffef6] pb-20 sm:pb-28">
+    <section className="relative overflow-hidden bg-[#fffef6] pt-5  pb-5">
       {/* chetlarda yumshoq so'nish */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#fffef6] to-transparent sm:w-28" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#fffef6] to-transparent sm:w-28" />

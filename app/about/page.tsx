@@ -1,8 +1,10 @@
 "use client";
 
 import { AboutIntro } from "@/components/AboutIntro/AboutIntro";
+import { ApproachSection } from "@/components/ApproachSection/ApproachSection";
 import { GallerySection } from "@/components/GallerySection/GallerySection";
 import { PageHero } from "@/components/PageHero/PageHero";
+import { TeamSection } from "@/components/TeamSection/TeamSection";
 
 export default function AboutPage() {
   return (
@@ -14,6 +16,8 @@ export default function AboutPage() {
         waveClassName="fill-[#fffef6]"
       />
       <AboutIntro />
+      <ApproachSection />
+      <TeamSection />
       <GallerySection />
     </main>
   );

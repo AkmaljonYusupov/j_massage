@@ -103,5 +103,31 @@
     "statCourses": "Massaj va terapiya yo'nalishlari",
     "callAt": "Qo'ng'iroq qiling:",
     "cta": "Hoziroq bog'laning"
+  },
+  "team": {
+    "badge": "Bizning jamoa",
+    "title": "Tajribali ustozlar bilan o'rganing",
+    "description": "Har bir murabbiyimiz yillar davomida amaliyotda ishlagan mutaxassis. Ular nafaqat texnikani, balki mijoz bilan ishlash madaniyatini ham o'rgatadi.",
+    "bio1": "Asoschi va bosh murabbiy. Kattalar uchun universal massaj va hijoma yo'nalishlari bo'yicha dars beradi.",
+    "bio2": "Bolalar massaji va logopedik massaj bo'yicha mutaxassis. Ortopedik va nevrologik holatlar bilan ishlaydi.",
+    "bio3": "Relaks, olovli va antitsellyulit massaj yo'nalishlarida amaliy mashg'ulotlar olib boradi.",
+    "ctaText": "Savollaringiz bormi? Keling, birga boshlaymiz.",
+    "ctaLink": "Biz bilan bog'laning"
+  },
+  "approach": {
+    "badge": "Bizning yondashuv",
+    "titleLine1": "Bilim beramiz, kasb",
+    "titleLine2": "egasi qilib chiqaramiz",
+    "description": "Birinchi darsdan diplom olguningizgacha har bir bosqich puxta o'ylangan: nazariya, ustoz nazorati ostida amaliyot va real mijozlar bilan ishlash.",
+    "cta": "Bog'lanish",
+    "missionTitle": "Maqsadimiz",
+    "missionText": "Har bir shogirdni qisqa vaqtda mustaqil ishlay oladigan mutaxassis darajasiga yetkazish.",
+    "missionNote": "Har bir dars amaliyot bilan",
+    "visionTitle": "Kelajak rejamiz",
+    "visionText": "Mintaqadagi eng ishonchli massaj o'quv markaziga aylanish va bitiruvchilarni ish bilan bog'lash.",
+    "visionNote": "Bitiruvchilar ishga joylashadi",
+    "valuesTitle": "Qadriyatlarimiz",
+    "valuesText": "Halollik, xavfsiz texnika va mijozga g'amxo'rlik - biz o'rgatadigan har bir usulning asosi.",
+    "valuesNote": "Sifat va xavfsizlik birinchi"
   }
 }
