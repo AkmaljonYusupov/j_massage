@@ -71,5 +71,25 @@
     "addressLabel": "O'quv markaz manzili",
     "address": "Toshkent shahri",
     "openButton": "Yo'nalishni ochish"
+  },
+  "footer": {
+    "headlineLine1": "Massaj kasbi sari yo'lingiz",
+    "headlineLine2": "shu yerdan boshlanadi",
+    "badge": "Bog'lanish",
+    "description": "J Massage School - massajni noldan kasbiy darajagacha o'rgatadigan o'quv markazi. Amaliyot, tajribali murabbiylar va sertifikat.",
+    "quickLinks": "Tezkor havolalar",
+    "ourCourses": "Kurslarimiz",
+    "contactInfo": "Aloqa ma'lumotlari",
+    "addressLabel": "Manzilimiz",
+    "address": "Toshkent shahri",
+    "phoneLabel": "Telefon raqam",
+    "copyright": "Mualliflik huquqi (c) {year} J Massage School. Barcha huquqlar himoyalangan.",
+    "courses": {
+      "classic": "Klassik massaj",
+      "sport": "Sport massaji",
+      "antiCellulite": "Antitsellyulit massaj",
+      "relax": "Relaks massaj",
+      "children": "Bolalar massaji"
+    }
   }
 }
