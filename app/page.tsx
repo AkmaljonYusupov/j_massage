@@ -4,6 +4,7 @@ import { InstagramSection } from "@/components/InstagramSection/InstagramSection
 import { ServicesSection } from "@/components/ServicesSection/ServicesSection";
 import { WhyChooseSection } from "@/components/WhyChooseSection/WhyChooseSection";
 import { KeyFactsSection } from "@/components/KeyFactsSection/KeyFactsSection";
+import { FaqSection } from "@/components/FaqSection/FaqSection";
 
 export default function Home() {
   return (
@@ -12,14 +13,16 @@ export default function Home() {
       <HomeHero />
       {/* About Section  */}
       <HomeAbout />
-      {/* Services Section  */} 
+      {/* Services Section  */}
       <ServicesSection />
       {/* Key Facts Section   */}
       <KeyFactsSection />
       {/* Why Choose Section  */}
       <WhyChooseSection />
-      {/* Instagram Section  */}  
-      <InstagramSection/>
+      {/* FAQ Section    */}
+      <FaqSection />      
+      {/* Instagram Section  */}
+      <InstagramSection />
     </main>
   );
 }

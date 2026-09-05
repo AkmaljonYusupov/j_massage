@@ -176,5 +176,22 @@
     "teachersText": "Har biri amaliyotda ishlaydigan, yillik tajribaga ega mutaxassis.",
     "coursesLabel": "Massaj va terapiya yo'nalishlari",
     "coursesText": "Klassik massajdan hijoma va girudoterapiyagacha keng dastur."
+  },
+  "faq": {
+    "badge": "Ko'p beriladigan savollar",
+    "titleLine1": "Kursni boshlashdan oldin",
+    "titleLine2": "bilishingiz kerak bo'lganlar",
+    "description": "Dars jarayoni, sertifikat, to'lov va guruhlar haqida eng ko'p so'raladigan savollarga qisqa javoblar.",
+    "q1": "Kurs qancha davom etadi va darslar qanday o'tadi?",
+    "a1": "Yo'nalishga qarab kurs davomiyligi farq qiladi. Darslar kichik guruhlarda, ustoz nazorati ostida o'tadi va har bir mavzu amaliy mashg'ulot bilan mustahkamlanadi.",
+    "q2": "Tibbiy ma'lumotim yo'q, o'rgana olamanmi?",
+    "a2": "Ha. Dastur noldan boshlanadi: anatomiya asoslari, xavfsizlik qoidalari va texnika ketma-ket o'rgatiladi. Oldindan tayyorgarlik talab qilinmaydi.",
+    "q3": "Kurs yakunida qanday hujjat beriladi?",
+    "a3": "Dasturni to'liq tamomlagan va amaliyotdan o'tgan shogirdlarga sertifikat topshiriladi.",
+    "q4": "Amaliyot real mijozlar bilan bo'ladimi?",
+    "a4": "Ha. Avval bir-biringizda va modellarda mashq qilasiz, keyin ustoz nazorati ostida real mijozlar bilan ishlaysiz.",
+    "q5": "Kursdan keyin ishga joylashishga yordam beradimi?",
+    "a5": "Bitiruvchilarimizga ish boshlash bo'yicha maslahat beramiz va imkoniyat bo'lganda tanish salonlarga tavsiya qilamiz.",
+    "imageCaption": "Har bir dars amaliyot bilan mustahkamlanadi"
   }
 }
