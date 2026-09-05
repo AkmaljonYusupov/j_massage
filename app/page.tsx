@@ -2,6 +2,7 @@ import { HomeHero } from "@/components/HomeHero/HomeHero";
 import { HomeAbout } from "@/components/HomeAbout/HomeAbout";
 import { InstagramSection } from "@/components/InstagramSection/InstagramSection";
 import { ServicesSection } from "@/components/ServicesSection/ServicesSection";
+import { WhyChooseSection } from "@/components/WhyChooseSection/WhyChooseSection";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <HomeHero />
       <HomeAbout />
       <ServicesSection />
+      <WhyChooseSection />
       <InstagramSection/>
 
     </main>

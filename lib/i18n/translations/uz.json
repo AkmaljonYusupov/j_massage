@@ -153,5 +153,17 @@
     "fireText": "Olovli va stoun massaj texnikalari, xavfsizlik qoidalari bilan to'liq amaliyot.",
     "bottomText": "Keling, birga ishlaymiz.",
     "bottomLink": "Bepul maslahat oling"
+  },
+  "whyChoose": {
+    "badge": "Nega aynan biz",
+    "titleLine1": "Bizni tanlashning",
+    "titleLine2": "asosiy sabablari",
+    "description": "Har bir shogird ustoz nazorati ostida, kichik guruhda va real mijozlar bilan ishlab o'rganadi - shu sababli kurs yakunida amaliy tajriba bilan chiqadi.",
+    "careTitle": "Har bir shogirdga alohida yondashuv",
+    "careText": "Guruhlar kichik, ustoz har bir harakatingizni ko'radi va xatoni o'sha zahoti tuzatadi.",
+    "holisticTitle": "Nazariya va amaliyot birgalikda",
+    "holisticText": "Anatomiya va xavfsizlik qoidalari amaliy mashg'ulot bilan birga o'rgatiladi, quruq yodlash yo'q.",
+    "cta": "Qabulga yozilish",
+    "quote": "Tanlangan g'amxo'rlik, esda qoladigan natija."
   }
 }
