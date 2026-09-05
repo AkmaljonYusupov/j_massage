@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 
+import { AnimatedWords } from "@/components/AnimatedWords/AnimatedWords";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { cn } from "@/lib/utils";
 
@@ -94,15 +95,12 @@ export function PageHero({
           align === "center" && "text-center"
         )}
       >
-        <motion.h1
-          initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        <h1
           className="text-[2.75rem] font-extrabold leading-[1.02] tracking-[-0.02em] sm:text-6xl lg:text-[4.5rem]"
           style={{ textShadow: "0 2px 30px rgba(0,0,0,0.35)" }}
         >
-          {t(titleKey)}
-        </motion.h1>
+          <AnimatedWords text={t(titleKey)} delay={0.25} />
+        </h1>
 
         <motion.nav
           aria-label="breadcrumb"

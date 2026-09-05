@@ -9,6 +9,7 @@ import { Phone } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { RippleCircle, useRipple } from "@/components/ui/ripple";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "./navbar.data";
 import { MobileNav } from "./MobileNav";
@@ -17,6 +18,7 @@ export function Navbar() {
   const { t } = useLanguage();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const ctaRipple = useRipple<HTMLAnchorElement>();
 
   // Bosh sahifadagi About bo'limi och rangda (#fffef6). Navbar matni oq
   // bo'lgani uchun u yerda ko'rinmay qolmasligi kerak: tepada shaffof shisha
@@ -103,12 +105,17 @@ export function Navbar() {
             <LanguageSwitcher className="hidden md:inline-flex" />
 
             <Link
+              ref={ctaRipple.ref}
+              onMouseEnter={ctaRipple.onMouseEnter}
               href="/contact"
-              className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-revoza-cream pl-2 pr-4 text-[13px] font-bold text-revoza-ink transition-colors hover:bg-white lg:inline-flex xl:h-12 xl:gap-2.5 xl:pr-6 xl:text-[15px]"
+              className="group relative hidden h-11 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-revoza-cream pl-2 pr-4 text-[13px] font-bold text-revoza-ink lg:inline-flex xl:h-12 xl:gap-2.5 xl:pr-6 xl:text-[15px]"
             >
+              {/* Sichqoncha kirgan nuqtadan tarqaladigan to'ldirish */}
+              <RippleCircle pos={ctaRipple.pos} className="bg-revoza-ink" />
+
               {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
               <motion.span
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream xl:h-9 xl:w-9"
+                className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream transition-colors duration-500 group-hover:bg-revoza-cream group-hover:text-revoza-ink xl:h-9 xl:w-9"
                 animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
                 transition={{
                   duration: 1.6,
@@ -120,7 +127,10 @@ export function Navbar() {
               >
                 <Phone className="h-4 w-4" />
               </motion.span>
-              {t("navbar.bookAppointment")}
+
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-revoza-cream">
+                {t("navbar.bookAppointment")}
+              </span>
             </Link>
 
             <MobileNav />

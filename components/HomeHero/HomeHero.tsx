@@ -5,9 +5,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Phone, Sparkle } from "lucide-react";
 
+import { AnimatedWords } from "@/components/AnimatedWords/AnimatedWords";
+import { TextMorph } from "@/components/TextMorph/TextMorph";
 import { ContactModal } from "@/components/ContactModal/ContactModal";
+import { RippleCircle, useRipple } from "@/components/ui/ripple";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { HERO_IMAGE } from "./hero.data";
+import { HERO_MORPH_WORDS } from "./heroMorph.data";
 
 const container = {
   hidden: {},
@@ -22,7 +26,9 @@ const item = {
 };
 
 export function HomeHero() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  const primaryRipple = useRipple<HTMLAnchorElement>();
+  const secondaryRipple = useRipple<HTMLButtonElement>();
 
   return (
     <section className="relative flex min-h-[860px] w-full items-center overflow-hidden lg:min-h-[920px]">
@@ -74,15 +80,19 @@ export function HomeHero() {
             {t("hero.badge")}
           </motion.span>
 
-          <motion.h1
-            variants={item}
-            className="mt-6 text-[2.6rem] font-extrabold leading-[1.05] tracking-[-0.02em] sm:text-6xl lg:text-[4.5rem]"
+          <h1
+            className="mt-6 text-[2.1rem] font-extrabold leading-[1.08] tracking-[-0.02em] sm:text-[3.1rem] lg:text-[3.6rem]"
             style={{ textShadow: "0 2px 30px rgba(0,0,0,0.35)" }}
           >
-            {t("hero.titleLine1")}
+            <AnimatedWords text={t("hero.titleLine1")} delay={0.35} />
             <br />
-            {t("hero.titleLine2")}
-          </motion.h1>
+            {/* Ikkinchi qatorda yo'nalish nomlari almashib turadi */}
+            <span className="text-revoza-sage">
+              <TextMorph words={HERO_MORPH_WORDS[locale] ?? HERO_MORPH_WORDS.uz} />
+            </span>
+            <br className="hidden sm:block" />
+            <AnimatedWords text={t("hero.titleLine2")} delay={0.6} />
+          </h1>
 
           <motion.p
             variants={item}
@@ -96,23 +106,34 @@ export function HomeHero() {
             className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
           >
             <Link
+              ref={primaryRipple.ref}
+              onMouseEnter={primaryRipple.onMouseEnter}
               href="/courses"
-              className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-revoza-sage pl-2 pr-6 text-[15px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-revoza-sage-dark"
+              className="group relative inline-flex h-12 items-center gap-2.5 overflow-hidden rounded-full bg-revoza-sage pl-2 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-transform duration-300 group-hover:rotate-45">
+              <RippleCircle
+                pos={primaryRipple.pos}
+                className="bg-revoza-sage-dark"
+              />
+
+              <span className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
-              {t("hero.ctaPrimary")}
+
+              <span className="relative z-10">{t("hero.ctaPrimary")}</span>
             </Link>
 
             <ContactModal>
               <button
+                ref={secondaryRipple.ref}
+                onMouseEnter={secondaryRipple.onMouseEnter}
                 type="button"
-                className="group inline-flex h-12 items-center gap-2.5 rounded-full border border-white/25 bg-white/10 pl-2 pr-6 text-[15px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20"
+                className="group relative inline-flex h-12 items-center gap-2.5 overflow-hidden rounded-full border border-white/25 bg-white/10 pl-2 pr-6 text-[15px] font-bold text-white backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5"
               >
+                <RippleCircle pos={secondaryRipple.pos} className="bg-white" />
                 {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
                 <motion.span
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark"
+                  className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-colors duration-500 group-hover:bg-revoza-sage-dark group-hover:text-white"
                   animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
                   transition={{
                     duration: 1.6,
@@ -124,7 +145,9 @@ export function HomeHero() {
                 >
                   <Phone className="h-4 w-4" />
                 </motion.span>
-                {t("hero.ctaSecondary")}
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-revoza-ink">
+                  {t("hero.ctaSecondary")}
+                </span>
               </button>
             </ContactModal>
           </motion.div>
