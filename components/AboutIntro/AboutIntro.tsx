@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { cn } from "@/lib/utils";
@@ -173,9 +173,20 @@ export function AboutIntro() {
                 href="/contact"
                 className="group inline-flex h-14 items-center gap-3 rounded-full bg-revoza-sage-dark pl-2 pr-7 text-[15px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-revoza-sage"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-transform duration-300 group-hover:rotate-45">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
+                {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
+                <motion.span
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-revoza-sage-dark"
+                  animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
+                  transition={{
+                    duration: 1.6,
+                    times: [0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.7, 1],
+                    repeat: Infinity,
+                    repeatDelay: 1.4,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Phone className="h-4 w-4" />
+                </motion.span>
                 {t("aboutIntro.cta")}
               </Link>
             </motion.div>
