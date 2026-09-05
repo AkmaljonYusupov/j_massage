@@ -134,5 +134,24 @@
     "title": "Darslarimiz va amaliyot lavhalari",
     "cta": "Profilga o'tish",
     "playLabel": "Videoni ochish"
+  },
+  "services": {
+    "badge": "Yo'nalishlarimiz",
+    "titleLine1": "Massaj va terapiya",
+    "titleLine2": "yo'nalishlarini o'rganing",
+    "description": "Klassik massajdan hijoma va olovli massajgacha - har bir yo'nalish amaliy mashg'ulotlar asosida, ustoz nazorati ostida o'rgatiladi.",
+    "cta": "Barcha kurslar",
+    "massageTitle": "Kattalar massaji",
+    "massageText": "Klassik, sport va relaks massaj texnikalari, mushak zo'riqishini bo'shashtirish usullari.",
+    "childrenTitle": "Bolalar massaji",
+    "childrenText": "Ortopedik va nevrologik holatlar bilan ishlash, motor rivojlanish va logopedik massaj.",
+    "hijamaTitle": "Hijoma",
+    "hijamaText": "Germaniya va Misr metodikasi, quruq, suvli va sirpanuvchi hijoma turlari.",
+    "faceTitle": "Yuz massaji",
+    "faceText": "Kosmetik yuz massaji, parafin terapiya va teri holatini yaxshilash usullari.",
+    "fireTitle": "Olovli massaj",
+    "fireText": "Olovli va stoun massaj texnikalari, xavfsizlik qoidalari bilan to'liq amaliyot.",
+    "bottomText": "Keling, birga ishlaymiz.",
+    "bottomLink": "Bepul maslahat oling"
   }
 }
