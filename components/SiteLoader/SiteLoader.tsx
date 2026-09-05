@@ -2,109 +2,110 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 
-/** Xavfsizlik chorasi: rasm sekin yuklansa ham loader shu vaqtdan ortiq turmaydi */
-const MAX_DURATION = 3500;
-/** Kamida shuncha ko'rinadi - tez ochilganda "yaltirab" o'tib ketmasligi uchun */
-const MIN_DURATION = 900;
+/** Halqa to'liq chizilishi uchun ketadigan vaqt (ms) - CSS bilan mos bo'lishi shart */
+const RING_DURATION = 2200;
+/** Xavfsizlik chorasi: biror resurs osilib qolsa ham loader ketadi */
+const MAX_DURATION = 5000;
+/** So'nib yo'qolish vaqti */
+const FADE_DURATION = 600;
 
 export function SiteLoader() {
-  const [visible, setVisible] = useState(true);
+  const [mounted, setMounted] = useState(true);
+  const [hiding, setHiding] = useState(false);
 
   useEffect(() => {
     const started = Date.now();
+    let fadeTimer = 0;
 
-    const hide = () => {
+    const finish = () => {
       const elapsed = Date.now() - started;
-      const wait = Math.max(0, MIN_DURATION - elapsed);
-      window.setTimeout(() => setVisible(false), wait);
+      const wait = Math.max(0, RING_DURATION - elapsed);
+
+      window.setTimeout(() => {
+        setHiding(true);
+        fadeTimer = window.setTimeout(() => setMounted(false), FADE_DURATION);
+      }, wait);
     };
 
     if (document.readyState === "complete") {
-      hide();
+      finish();
     } else {
-      window.addEventListener("load", hide, { once: true });
+      window.addEventListener("load", finish, { once: true });
     }
 
-    const failsafe = window.setTimeout(() => setVisible(false), MAX_DURATION);
+    const failsafe = window.setTimeout(() => {
+      setHiding(true);
+      fadeTimer = window.setTimeout(() => setMounted(false), FADE_DURATION);
+    }, MAX_DURATION);
 
     return () => {
-      window.removeEventListener("load", hide);
+      window.removeEventListener("load", finish);
       window.clearTimeout(failsafe);
+      window.clearTimeout(fadeTimer);
     };
   }, []);
 
   // Loader ochiq turganda sahifa scroll qilinmasin
   useEffect(() => {
-    document.body.style.overflow = visible ? "hidden" : "";
+    document.body.style.overflow = mounted ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [visible]);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          key="site-loader"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-revoza-ink"
+    <div
+      className={`fixed inset-0 z-[200] flex items-center justify-center bg-[#5F6E4D] transition-opacity duration-[600ms] ease-in-out ${
+        hiding ? "pointer-events-none opacity-0" : "opacity-100"
+      }`}
+    >
+      <div className="relative flex h-[280px] w-[280px] items-center justify-center sm:h-[360px] sm:w-[360px]">
+        {/*
+          Halqa sekin-asta chiziladi.
+          Animatsiya "loaderRing" nomi bilan globals.css da yozilgan:
+          stroke-dashoffset 604 dan 0 gacha kamayadi (604 - doira uzunligi).
+          -90 daraja burilgan, shuning uchun chizish tepadan boshlanadi.
+        */}
+        <svg
+          viewBox="0 0 200 200"
+          className="absolute inset-0 h-full w-full -rotate-90"
+          fill="none"
+          aria-hidden="true"
         >
-          {/* Suvga tomchi tushgandek tarqaladigan halqalar */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            {[0, 1, 2].map((i) => (
-              <motion.span
-                key={i}
-                className="absolute rounded-full border border-revoza-sage/40"
-                style={{ width: 180, height: 180 }}
-                initial={{ scale: 0.4, opacity: 0 }}
-                animate={{ scale: [0.4, 2.4], opacity: [0.5, 0] }}
-                transition={{
-                  duration: 3,
-                  delay: i * 1,
-                  repeat: Infinity,
-                  ease: "easeOut",
-                }}
-              />
-            ))}
-          </div>
+          <circle
+            cx="100"
+            cy="100"
+            r="96"
+            stroke="rgba(255,255,255,0.14)"
+            strokeWidth="1.4"
+          />
+          <circle
+            cx="100"
+            cy="100"
+            r="96"
+            stroke="#ffffff"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            className="loader-ring"
+          />
+        </svg>
 
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative"
-          >
-            <Image
-              src="/logo-white.png"
-              alt="J Massage School"
-              width={1756}
-              height={652}
-              priority
-              quality={100}
-              unoptimized
-              className="h-14 w-auto sm:h-16"
-            />
-          </motion.div>
-
-          {/* Yupqa progress chizig'i */}
-          <div className="relative mt-8 h-[3px] w-40 overflow-hidden rounded-full bg-white/15">
-            <motion.span
-              className="absolute inset-y-0 left-0 w-1/3 rounded-full bg-revoza-sage"
-              animate={{ x: ["-120%", "320%"] }}
-              transition={{
-                duration: 1.4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        <div className="loader-logo relative px-12">
+          <Image
+            src="/logo-white.png"
+            alt="J Massage School"
+            width={1756}
+            height={652}
+            priority
+            quality={100}
+            unoptimized
+            className="h-14 w-auto sm:h-16"
+          />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -74,8 +74,40 @@
 }
 
 /* ============================================================
-   Yuklanish holati (app/loading.tsx) uchun animatsiya
+   SITE LOADER
+   Halqa sekin-asta chiziladi: 604 - r=96 bo'lgan doiraning
+   uzunligi (2 * PI * 96). Offset 604 dan 0 ga tushganda
+   chiziq to'liq ko'rinadi.
    ============================================================ */
+.loader-ring {
+  stroke-dasharray: 604;
+  stroke-dashoffset: 604;
+  animation: loaderRing 2200ms ease-in-out forwards;
+}
+
+@keyframes loaderRing {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.loader-logo {
+  opacity: 0;
+  animation: loaderLogo 800ms ease-out forwards;
+}
+
+@keyframes loaderLogo {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* app/loading.tsx dagi yupqa chiziq uchun */
 @keyframes loaderSlide {
   0% {
     transform: translateX(-120%);
@@ -87,8 +119,7 @@
 
 /*
   Foydalanuvchi tizimda "harakatni kamaytirish" ni yoqsa, sayt bo'ylab
-  barcha animatsiyalar deyarli to'xtaydi. Bu vestibulyar sezgirligi bor
-  odamlar uchun muhim va SEO/qulaylik tekshiruvlarida ham talab qilinadi.
+  animatsiyalar deyarli to'xtaydi.
 */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -101,5 +132,13 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .loader-ring {
+    stroke-dashoffset: 0;
+  }
+
+  .loader-logo {
+    opacity: 1;
   }
 }
