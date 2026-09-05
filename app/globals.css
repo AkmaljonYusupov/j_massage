@@ -75,37 +75,12 @@
 
 /* ============================================================
    SITE LOADER
+   Halqa va yurib boruvchi nuqta HAQIQIY yuklanish foiziga qarab
+   JS orqali boshqariladi, shuning uchun ular uchun keyframe yo'q.
+   Bu yerda faqat fon va logo animatsiyalari.
    ============================================================ */
 
-/* 1) Halqa sekin-asta chiziladi.
-      604 - r=96 bo'lgan doiraning uzunligi (2 * PI * 96). */
-.loader-ring {
-  stroke-dasharray: 604;
-  stroke-dashoffset: 604;
-  animation: loaderRing 2200ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-
-@keyframes loaderRing {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* 2) Halqa uchida yurib boruvchi nuqta - chizish bilan bir xil tezlikda */
-.loader-orbit {
-  animation: loaderOrbit 2200ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-
-@keyframes loaderOrbit {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* 3) Logo: paydo bo'ladi, keyin sekin "nafas oladi" */
+/* Logo: paydo bo'ladi, keyin sekin "nafas oladi" */
 .loader-logo {
   opacity: 0;
   animation: loaderLogo 800ms ease-out forwards,
@@ -133,7 +108,7 @@
   }
 }
 
-/* 4) Suvga tomchi tushgandek tarqaluvchi halqalar */
+/* Suvga tomchi tushgandek tarqaluvchi halqalar */
 .loader-ripple {
   opacity: 0;
   animation: loaderRipple 3.4s ease-out infinite;
@@ -162,7 +137,7 @@
   }
 }
 
-/* 5) Fondagi sekin suzuvchi yorug'lik dog'lari */
+/* Fondagi sekin suzuvchi yorug'lik dog'lari */
 .loader-glow-a {
   animation: loaderGlowA 14s ease-in-out infinite;
 }
@@ -217,16 +192,11 @@
     transition-duration: 0.01ms !important;
   }
 
-  .loader-ring {
-    stroke-dashoffset: 0;
-  }
-
   .loader-logo {
     opacity: 1;
   }
 
   .loader-ripple,
-  .loader-orbit,
   .loader-glow-a,
   .loader-glow-b {
     animation: none !important;
