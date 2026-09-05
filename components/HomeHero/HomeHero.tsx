@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Send, Sparkle } from "lucide-react";
+import { ArrowUpRight, Phone, Sparkle } from "lucide-react";
 
 import { ContactModal } from "@/components/ContactModal/ContactModal";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -110,9 +110,20 @@ export function HomeHero() {
                 type="button"
                 className="group inline-flex h-12 items-center gap-2.5 rounded-full border border-white/25 bg-white/10 pl-2 pr-6 text-[15px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-ink transition-transform duration-300 group-hover:scale-105">
-                  <Send className="h-4 w-4" />
-                </span>
+                {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
+                <motion.span
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark"
+                  animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
+                  transition={{
+                    duration: 1.6,
+                    times: [0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.7, 1],
+                    repeat: Infinity,
+                    repeatDelay: 1.4,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Phone className="h-4 w-4" />
+                </motion.span>
                 {t("hero.ctaSecondary")}
               </button>
             </ContactModal>
