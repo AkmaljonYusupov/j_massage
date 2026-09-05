@@ -63,7 +63,7 @@ export function HomeHero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="container relative z-10 flex flex-col gap-10 pb-8 pt-8 text-revoza-cream lg:pb-10 lg:pt-10"
+        className="container relative z-10 flex flex-col gap-10 pb-8 pt-28 text-revoza-cream sm:pt-32 lg:pb-10 lg:pt-40"
       >
         <div className="max-w-3xl">
           <motion.span

@@ -108,7 +108,7 @@ export function Navbar() {
             >
               {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
               <motion.span
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream xl:h-9 xl:w-9"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-revoza-ink/70 text-revoza-ink xl:h-9 xl:w-9"
                 animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
                 transition={{
                   duration: 1.6,

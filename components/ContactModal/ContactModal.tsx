@@ -95,9 +95,9 @@ export function ContactModal({ children }: { children: ReactNode }) {
       <DialogPrimitive.Trigger asChild>{children}</DialogPrimitive.Trigger>
 
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-[60] bg-black/55 backdrop-blur-[3px] duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <DialogPrimitive.Overlay className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-[2px] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
 
-        <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-[70] w-[92vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-[28px] border border-revoza-ink/10 bg-[#fffef6] p-6 text-revoza-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-bottom-4 data-[state=open]:slide-in-from-bottom-4 data-[state=closed]:duration-200 data-[state=open]:duration-400 data-[state=open]:ease-out sm:p-8">
+        <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-[70] w-[92vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-[28px] border border-revoza-ink/10 bg-[#fffef6] p-6 text-revoza-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] focus:outline-none ease-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-2 data-[state=open]:slide-in-from-bottom-2 data-[state=closed]:duration-150 data-[state=open]:duration-250 sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
               <DialogPrimitive.Title className="text-2xl font-extrabold tracking-tight sm:text-3xl">
