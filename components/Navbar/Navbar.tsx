@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { Phone } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -106,9 +106,20 @@ export function Navbar() {
               href="/contact"
               className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-revoza-cream pl-2 pr-4 text-[13px] font-bold text-revoza-ink transition-colors hover:bg-white lg:inline-flex xl:h-12 xl:gap-2.5 xl:pr-6 xl:text-[15px]"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream xl:h-9 xl:w-9">
-                <ArrowUpRight className="h-4 w-4" />
-              </span>
+              {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
+              <motion.span
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream xl:h-9 xl:w-9"
+                animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
+                transition={{
+                  duration: 1.6,
+                  times: [0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.7, 1],
+                  repeat: Infinity,
+                  repeatDelay: 1.4,
+                  ease: "easeInOut",
+                }}
+              >
+                <Phone className="h-4 w-4" />
+              </motion.span>
               {t("navbar.bookAppointment")}
             </Link>
 

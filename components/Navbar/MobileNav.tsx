@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Instagram, Menu, Phone, X } from "lucide-react";
 
 import {
@@ -142,9 +143,19 @@ export function MobileNav() {
                 href="/contact"
                 className="flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-revoza-cream pl-2 pr-5 text-[15px] font-bold text-revoza-ink transition-colors hover:bg-white"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
+                <motion.span
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream"
+                  animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
+                  transition={{
+                    duration: 1.6,
+                    times: [0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.7, 1],
+                    repeat: Infinity,
+                    repeatDelay: 1.4,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Phone className="h-4 w-4" />
+                </motion.span>
                 {t("navbar.bookAppointment")}
               </Link>
             </SheetClose>
