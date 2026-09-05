@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { cn } from "@/lib/utils";
 import {
   INSTAGRAM_POSTS,
   INSTAGRAM_PROFILE_URL,
@@ -29,7 +30,15 @@ const item = {
  * iframe faqat karta ekranga yaqinlashganda ulanadi (IntersectionObserver).
  * Foydalanuvchi uchun bu sezilmaydi - u scroll qilib yetganda video joyida.
  */
-function VideoCard({ post, index }: { post: InstagramPost; index: number }) {
+function VideoCard({
+  post,
+  index,
+  className,
+}: {
+  post: InstagramPost;
+  index: number;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -55,16 +64,41 @@ function VideoCard({ post, index }: { post: InstagramPost; index: number }) {
     <motion.div
       ref={ref}
       variants={item}
-      className="relative aspect-[9/16] overflow-hidden rounded-2xl border border-revoza-ink/10 bg-white"
+      className={cn(
+        "relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-2xl border border-revoza-ink/10 bg-[#fffef6] sm:max-w-none",
+        className
+      )}
     >
       {visible && (
+        /*
+          Instagram embed ichida video atrofida qora chetlar va pastda
+          "View more / likes / Add a comment" paneli bo'ladi. Iframe
+          kattalashtirilib, yuqori markazdan masshtablanadi - shu tufayli
+          faqat videoning o'zi ko'rinadi, qolgani karta chetidan tashqarida
+          qoladi va kesiladi.
+        */
         <iframe
           src={toEmbedUrl(post.url)}
           title={`Instagram ${index + 1}`}
           loading="lazy"
           allowFullScreen
           scrolling="no"
-          className="absolute left-1/2 top-1/2 h-[calc(100%+120px)] w-[calc(100%+2px)] -translate-x-1/2 -translate-y-1/2 border-0"
+          className="absolute left-1/2 top-1/2 border-0"
+          style={{
+            /*
+              Sozlash uchun uch qiymat:
+              - width: iframe qanchalik keng bo'lsa, ichidagi video shuncha
+                katta bo'ladi. 200% - video kartaning to'liq balandligini
+                qoplashi va pastda oq panel ko'rinmasligi uchun.
+              - height: iframe ichidagi to'liq kontent balandligi
+                (yuqori panel + video + pastki panel).
+              - translateY dagi 27px: video markazini kartaning markaziga
+                to'g'rilaydi (pastki panel yuqoridagidan balandroq).
+            */
+            width: "200%",
+            height: "calc(115% + 166px)",
+            transform: "translate(-50%, calc(-50% + 27px))",
+          }}
         />
       )}
     </motion.div>
@@ -114,10 +148,16 @@ export function InstagramSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5"
+          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5"
         >
           {INSTAGRAM_POSTS.map((post, i) => (
-            <VideoCard key={post.id} post={post} index={i} />
+            <VideoCard
+              key={post.id}
+              post={post}
+              index={i}
+              /* eng kichik ekranda faqat dastlabki 4 tasi ko'rinadi */
+              className={i >= 4 ? "hidden sm:block" : undefined}
+            />
           ))}
         </motion.div>
       </div>
