@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowUpRight,
   Baby,
@@ -31,37 +31,121 @@ const ICONS: Record<ServiceIconId, LucideIcon> = {
   fire: Flame,
 };
 
-/** Chap pastdagi dekorativ chizma: toshlar, shamlar va lotus */
+/**
+ * Chap pastdagi dekorativ medalyon.
+ *
+ * Kompozitsiya: markazda qavat-qavat lotus, atrofida ikkita ochiq halqa
+ * (zen "enso" uslubida) qarama-qarshi yo'nalishda sekin aylanadi, ulardan
+ * tashqarida to'lqin yoylari tarqaladi va bir nechta gulbarg suzib yuradi.
+ * Bo'lim chetidan qisman chiqib turadi - shu sababli bezak emas, dizaynning
+ * bir qismidek ko'rinadi.
+ */
 function SpaOrnament({ className }: { className?: string }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <svg
-      viewBox="0 0 320 150"
+      viewBox="0 0 300 300"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1"
       strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
       aria-hidden="true"
     >
-      <ellipse cx="40" cy="132" rx="34" ry="11" />
-      <ellipse cx="40" cy="114" rx="26" ry="9" />
-      <ellipse cx="40" cy="98" rx="18" ry="7" />
-      <ellipse cx="40" cy="85" rx="11" ry="5" />
+      {/* --- Tarqaluvchi to'lqin yoylari --- */}
+      {[0, 1, 2].map((i) => (
+        <motion.circle
+          key={`ring-${i}`}
+          cx="150"
+          cy="150"
+          r="96"
+          strokeWidth="1"
+          initial={{ scale: 0.75, opacity: 0 }}
+          animate={
+            reduceMotion
+              ? { scale: 1, opacity: 0.35 }
+              : { scale: [0.75, 1.55], opacity: [0.55, 0] }
+          }
+          transition={{
+            duration: 9,
+            delay: i * 3,
+            repeat: Infinity,
+            ease: "easeOut",
+          }}
+          style={{ transformOrigin: "150px 150px" }}
+        />
+      ))}
 
-      <path d="M100,132 L100,86 A17,8 0 0 1 134,86 L134,132" />
-      <ellipse cx="117" cy="132" rx="17" ry="7" />
-      <path d="M117,80 C111,72 117,66 117,62 C119,67 125,72 117,80 Z" />
+      {/* --- Tashqi ochiq halqa (soat mili bo'ylab) --- */}
+      <motion.circle
+        cx="150"
+        cy="150"
+        r="128"
+        strokeWidth="1.4"
+        strokeDasharray="470 134"
+        animate={reduceMotion ? undefined : { rotate: 360 }}
+        transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+        style={{ transformOrigin: "150px 150px" }}
+      />
 
-      <path d="M152,132 L152,102 A13,7 0 0 1 178,102 L178,132" />
-      <ellipse cx="165" cy="132" rx="13" ry="6" />
-      <path d="M165,96 C160,90 165,85 165,82 C167,86 172,90 165,96 Z" />
+      {/* --- Ichki ochiq halqa (teskari yo'nalishda) --- */}
+      <motion.circle
+        cx="150"
+        cy="150"
+        r="110"
+        strokeWidth="0.9"
+        strokeDasharray="250 140"
+        animate={reduceMotion ? undefined : { rotate: -360 }}
+        transition={{ duration: 95, repeat: Infinity, ease: "linear" }}
+        style={{ transformOrigin: "150px 150px" }}
+      />
 
-      <path d="M252,132 c-4-6-4-14 0-20 4 6 4 14 0 20Z" />
-      <path d="M252,132 c-7-2-12-9-12-18 7 2 12 9 12 18Z" />
-      <path d="M252,132 c7-2 12-9 12-18-7 2-12 9-12 18Z" />
-      <path d="M252,132 c-10 1-18-3-22-11 10-2 18 2 22 11Z" />
-      <path d="M252,132 c10 1 18-3 22-11-10-2-18 2-22 11Z" />
-      <path d="M232,138 c5 5 12 7 20 7s15-2 20-7" />
+      {/* --- Markazdagi lotus --- */}
+      <motion.g
+        strokeWidth="1.2"
+        animate={reduceMotion ? undefined : { scale: [1, 1.045, 1] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformOrigin: "150px 186px" }}
+      >
+        <path d="M150,186 c-8-12-8-27 0-39 8 12 8 27 0 39Z" />
+        <path d="M150,186 c-15-5-25-19-25-37 15 5 25 19 25 37Z" />
+        <path d="M150,186 c15-5 25-19 25-37-15 5-25 19-25 37Z" />
+        <path d="M150,186 c-22 3-39-7-47-24 22-5 39 5 47 24Z" />
+        <path d="M150,186 c22 3 39-7 47-24-22-5-39 5-47 24Z" />
+        <path d="M150,186 c-30 6-53-4-64-22" opacity="0.5" />
+        <path d="M150,186 c30 6 53-4 64-22" opacity="0.5" />
+        <path d="M106,196 c10 9 26 14 44 14s34-5 44-14" />
+      </motion.g>
+
+      {/* --- Suzib yuruvchi gulbarglar --- */}
+      {[
+        { d: "M214,96 c-9-4-13-13-10-22 9 4 13 13 10 22Z", dur: 13, dx: 10, dy: -14 },
+        { d: "M92,74 c8-5 18-3 24 5 -8 5-18 3-24-5Z", dur: 17, dx: -12, dy: -10 },
+        { d: "M236,214 c-4-9-1-19 7-24 4 9 1 19-7 24Z", dur: 15, dx: 14, dy: 8 },
+      ].map((petal, i) => (
+        <motion.path
+          key={`petal-${i}`}
+          d={petal.d}
+          strokeWidth="1"
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  x: [0, petal.dx, 0],
+                  y: [0, petal.dy, 0],
+                  rotate: [0, 12, 0],
+                  opacity: [0.4, 0.85, 0.4],
+                }
+          }
+          transition={{
+            duration: petal.dur,
+            delay: i * 1.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
     </svg>
   );
 }
@@ -177,7 +261,7 @@ export function ServicesSection() {
 
   return (
     <section className="relative overflow-hidden bg-[#edf0e6] py-20 text-revoza-ink sm:py-28">
-      <SpaOrnament className="pointer-events-none absolute bottom-6 left-[2%] hidden h-36 w-[20rem] text-revoza-ink/15 lg:block" />
+      <SpaOrnament className="pointer-events-none absolute -bottom-16 -left-16 hidden h-[22rem] w-[22rem] text-revoza-ink/20 md:block xl:-bottom-20 xl:-left-20 xl:h-[26rem] xl:w-[26rem]" />
 
       <div className="container relative">
         {/* --- Sarlavha --- */}
