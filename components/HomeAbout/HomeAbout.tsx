@@ -164,7 +164,8 @@ export function HomeAbout() {
             >
               <Link
                 href="/about"
-                className="inline-flex h-12 shrink-0 items-center gap-2.5 self-start rounded-full bg-revoza-sage pl-2 pr-6 text-[15px] font-bold text-white transition-colors hover:bg-revoza-sage-dark"
+                data-ripple
+                className="ripple-btn ripple-sage-dark inline-flex h-12 shrink-0 items-center gap-2.5 self-start rounded-full bg-revoza-sage pl-2 pr-6 text-[15px] font-bold text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark">
                   <ArrowUpRight className="h-4 w-4" />

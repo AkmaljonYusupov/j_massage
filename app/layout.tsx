@@ -4,6 +4,7 @@ import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Footer } from "@/components/Footer/Footer";
 import { SiteLoader } from "@/components/SiteLoader/SiteLoader";
+import { RippleProvider } from "@/components/RippleProvider/RippleProvider";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
 import "./globals.css";
@@ -39,6 +40,7 @@ export default function RootLayout({
     <html lang="uz" className={`${bricolage.variable} ${inter.variable}`}>
       <body>
         <SiteLoader />
+        <RippleProvider />
         <LanguageProvider>
           <Navbar />
           {children}

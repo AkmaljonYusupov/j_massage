@@ -217,7 +217,8 @@ export function AboutIntro() {
             <motion.div variants={item} className="mt-9">
               <Link
                 href="/contact"
-                className="group inline-flex h-14 items-center gap-3 rounded-full bg-revoza-sage-dark pl-2 pr-7 text-[15px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-revoza-sage"
+                data-ripple
+                className="ripple-btn ripple-sage group inline-flex h-14 items-center gap-3 rounded-full bg-revoza-sage-dark pl-2 pr-7 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
               >
                 {/* Tinimsiz sekin tebranadigan telefon ikonkasi */}
                 <motion.span

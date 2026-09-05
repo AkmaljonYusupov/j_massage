@@ -141,7 +141,8 @@ export function MobileNav() {
             <SheetClose asChild>
               <Link
                 href="/contact"
-                className="flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-revoza-cream pl-2 pr-5 text-[15px] font-bold text-revoza-ink transition-colors hover:bg-white"
+                data-ripple
+                className="ripple-btn ripple-ink flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-revoza-cream pl-2 pr-5 text-[15px] font-bold text-revoza-ink transition-colors hover:text-revoza-cream"
               >
                 <motion.span
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream"

@@ -95,7 +95,8 @@ export function WhyChooseSection() {
             <motion.div variants={item}>
               <Link
                 href="/contact"
-                className="inline-flex h-14 items-center gap-3 rounded-full bg-revoza-sage-dark pl-2 pr-7 text-[15px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-revoza-sage"
+                data-ripple
+                className="ripple-btn ripple-sage inline-flex h-14 items-center gap-3 rounded-full bg-revoza-sage-dark pl-2 pr-7 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <motion.span
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-revoza-sage-dark"

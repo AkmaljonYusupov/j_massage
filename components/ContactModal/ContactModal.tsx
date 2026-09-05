@@ -195,7 +195,8 @@ export function ContactModal({ children }: { children: ReactNode }) {
             type="button"
             onClick={handleSubmit}
             disabled={status === "sending"}
-            className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-revoza-sage px-7 text-[15px] font-bold text-white transition-all duration-300 hover:bg-revoza-sage-dark disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+            data-ripple
+            className="ripple-btn ripple-sage-dark mt-6 inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-revoza-sage px-7 text-[15px] font-bold text-white disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
           >
             {status === "sending" ? (
               <Loader2 className="h-4 w-4 animate-spin" />
