@@ -165,5 +165,16 @@
     "holisticText": "Anatomiya va xavfsizlik qoidalari amaliy mashg'ulot bilan birga o'rgatiladi, quruq yodlash yo'q.",
     "cta": "Qabulga yozilish",
     "quote": "Tanlangan g'amxo'rlik, esda qoladigan natija."
+  },
+  "keyFacts": {
+    "badge": "Raqamlarda",
+    "title": "Yo'limizning asosiy natijalari",
+    "description": "Har bir raqam ortida kasb egasi bo'lgan shogirdlar, ular ishonch bildirgan ustozlar va yillar davomida sayqallangan dastur turibdi.",
+    "graduatesLabel": "Kursni tamomlagan shogirdlar",
+    "graduatesText": "Ularning ko'pchiligi bugun mustaqil ishlaydi yoki o'z salonini ochgan.",
+    "teachersLabel": "Tajribali murabbiylar",
+    "teachersText": "Har biri amaliyotda ishlaydigan, yillik tajribaga ega mutaxassis.",
+    "coursesLabel": "Massaj va terapiya yo'nalishlari",
+    "coursesText": "Klassik massajdan hijoma va girudoterapiyagacha keng dastur."
   }
 }
