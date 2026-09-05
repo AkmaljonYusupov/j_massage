@@ -165,16 +165,6 @@
   }
 }
 
-/* app/loading.tsx dagi yupqa chiziq uchun */
-@keyframes loaderSlide {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(320%);
-  }
-}
-
 /*
   Foydalanuvchi tizimda "harakatni kamaytirish" ni yoqsa, sayt bo'ylab
   animatsiyalar deyarli to'xtaydi.

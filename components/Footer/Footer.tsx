@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram } from "lucide-react";
+import { motion } from "framer-motion";
+import { Instagram, Phone } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
@@ -35,12 +36,63 @@ export function Footer() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-black/25" />
 
       <div className="container relative">
-        {/* --- Yuqori qism --- */}
-        <div className="py-12 sm:py-16 lg:py-20">
-          <h2 className="max-w-2xl text-[1.6rem] font-extrabold leading-[1.2] tracking-tight sm:text-[2.1rem] lg:text-[2.6rem]">
+        {/* --- Yuqori qism: sarlavha va harakatga chaqiruv --- */}
+        <div className="flex flex-col gap-10 py-12 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:py-20">
+          <h2 className="max-w-xl text-[1.6rem] font-extrabold leading-[1.2] tracking-tight sm:text-[2.1rem] lg:text-[2.5rem]">
             {t("footer.headlineLine1")}
             <br className="hidden sm:block" /> {t("footer.headlineLine2")}
           </h2>
+
+          {/* Harakatga chaqiruv kartasi */}
+          <div className="relative w-full max-w-md shrink-0 overflow-hidden rounded-[26px] border border-white/20 bg-white/[0.07] p-6 backdrop-blur-sm sm:p-7">
+            {/* burchakdagi nozik halqalar */}
+            <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full border border-white/15" />
+            <span className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full border border-white/10" />
+
+            <span className="relative inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white/75">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+              </span>
+              {t("footer.ctaEyebrow")}
+            </span>
+
+            <p className="relative mt-4 text-sm leading-relaxed text-white/75">
+              {t("footer.ctaNote")}
+            </p>
+
+            <div className="relative mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/contact"
+                className="inline-flex h-12 flex-1 basis-0 items-center justify-center gap-2.5 rounded-full bg-white pl-2 pr-4 text-[14.5px] font-bold text-revoza-sage-dark transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                <motion.span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-revoza-sage-dark text-white"
+                  animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
+                  transition={{
+                    duration: 1.6,
+                    times: [0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.7, 1],
+                    repeat: Infinity,
+                    repeatDelay: 1.4,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Phone className="h-4 w-4" />
+                </motion.span>
+                <span className="truncate">{t("navbar.bookAppointment")}</span>
+              </Link>
+
+              <a
+                href={FOOTER_TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-12 flex-1 basis-0 items-center justify-center gap-2.5 rounded-full border border-white/35 px-4 text-[14.5px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[#229ED9]"
+              >
+                <TelegramIcon className="h-[18px] w-[18px]" />
+                <span className="truncate">{t("footer.telegramCta")}</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="h-px w-full bg-white/20" />

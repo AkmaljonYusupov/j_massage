@@ -89,7 +89,10 @@
       "hirudo": "Girudoterapiya (zuluk)",
       "fire": "Olovli massaj",
       "speech": "Logopedik massaj"
-    }
+    },
+    "ctaNote": "Joylar cheklangan. Qo'ng'iroq qiling yoki Telegram orqali yozing - sizga mos yo'nalishni tanlashga yordam beramiz.",
+    "telegramCta": "Telegramda yozish",
+    "ctaEyebrow": "Yangi guruh ochilmoqda"
   },
   "aboutIntro": {
     "badge": "Biz haqimizda",
