@@ -144,7 +144,7 @@ export function MobileNav() {
                 className="flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-revoza-cream pl-2 pr-5 text-[15px] font-bold text-revoza-ink transition-colors hover:bg-white"
               >
                 <motion.span
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-revoza-ink/70 text-revoza-ink"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-revoza-ink text-revoza-cream"
                   animate={{ rotate: [0, -14, 12, -10, 8, 0, 0, 0] }}
                   transition={{
                     duration: 1.6,
