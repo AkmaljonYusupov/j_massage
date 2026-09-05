@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkle } from "lucide-react";
+import { ArrowUpRight, Send, Sparkle } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { ContactModal } from "@/components/ContactModal/ContactModal";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { HeroStats } from "./HeroStats";
 import { HERO_IMAGE } from "./hero.data";
 
 const container = {
@@ -32,7 +32,6 @@ export function HomeHero() {
         uni ustidan yopib ketadi.
       */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        {/* PageHero dagi kabi sekin "ken burns" harakati */}
         <motion.div
           initial={{ scale: 1.12 }}
           animate={{ scale: 1 }}
@@ -49,11 +48,8 @@ export function HomeHero() {
           />
         </motion.div>
 
-        {/* Matn o'qilishi uchun chapdan qorayish */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/10" />
-        {/* Yuqori va pastdan qorayish */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50" />
-        {/* Vinyetka - chetlar to'qroq, markaz ochiq */}
         <div
           className="absolute inset-0"
           style={{
@@ -97,16 +93,29 @@ export function HomeHero() {
 
           <motion.div
             variants={item}
-            className="mt-8 flex flex-wrap items-center gap-6"
+            className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
           >
-            <Button variant="sage" className="gap-2 pl-2 pr-5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-revoza-sage-dark">
+            <Link
+              href="/courses"
+              className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-revoza-sage pl-2 pr-6 text-[15px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-revoza-sage-dark"
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
               {t("hero.ctaPrimary")}
-            </Button>
+            </Link>
 
-            <HeroStats />
+            <ContactModal>
+              <button
+                type="button"
+                className="group inline-flex h-12 items-center gap-2.5 rounded-full border border-white/25 bg-white/10 pl-2 pr-6 text-[15px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-ink transition-transform duration-300 group-hover:scale-105">
+                  <Send className="h-4 w-4" />
+                </span>
+                {t("hero.ctaSecondary")}
+              </button>
+            </ContactModal>
           </motion.div>
         </div>
 
