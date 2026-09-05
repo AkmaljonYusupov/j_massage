@@ -44,7 +44,7 @@ export function Footer() {
           </h2>
 
           {/* Harakatga chaqiruv kartasi */}
-          <div className="relative w-full max-w-md shrink-0 overflow-hidden rounded-[26px] border border-white/20 bg-white/[0.07] p-6 backdrop-blur-sm sm:p-7">
+          <div className="relative w-full max-w-md shrink-0 overflow-hidden rounded-[26px] border border-white/20 bg-white/[0.07] p-6 backdrop-blur-sm sm:max-w-[30rem] sm:p-7">
             {/* burchakdagi nozik halqalar */}
             <span className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full border border-white/15" />
             <span className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full border border-white/10" />
@@ -68,10 +68,10 @@ export function Footer() {
               sm dan boshlab matni ham chiqadi. Shu sababli ular hech qanday
               kenglikda siqilmaydi va ustma-ust tushmaydi.
             */}
-            <div className="relative mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:gap-2.5">
+            <div className="relative mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-nowrap sm:gap-3">
               <Link
                 href="/contact"
-                className="group inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-white pl-2 pr-5 text-[15px] font-bold text-revoza-sage-dark shadow-[0_10px_30px_-18px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-18px_rgba(0,0,0,0.75)] sm:h-[50px] sm:w-auto"
+                className="group inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-white pl-2 pr-5 text-[15px] font-bold text-revoza-sage-dark sm:pr-4 sm:text-[14.5px] shadow-[0_10px_30px_-18px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-18px_rgba(0,0,0,0.75)] sm:h-[50px] sm:w-auto sm:shrink-0"
               >
                 <motion.span
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-revoza-sage-dark text-white transition-transform duration-300 group-hover:scale-105"
@@ -95,7 +95,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label={t("footer.telegramCta")}
                 title={t("footer.telegramCta")}
-                className="inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[#229ED9] sm:h-[50px] sm:w-auto"
+                className="inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm sm:px-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[#229ED9] sm:h-[50px] sm:w-auto sm:shrink-0"
               >
                 <TelegramIcon className="h-[18px] w-[18px] shrink-0" />
                 <span className="whitespace-nowrap text-[15px] font-bold sm:text-[14.5px]">
