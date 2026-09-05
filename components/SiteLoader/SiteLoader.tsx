@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-/** Halqa to'liq chizilishi uchun ketadigan vaqt (ms) - CSS bilan mos bo'lishi shart */
+/** Halqa to'liq chizilishi uchun ketadigan vaqt (ms) - globals.css bilan mos bo'lishi shart */
 const RING_DURATION = 2200;
 /** Xavfsizlik chorasi: biror resurs osilib qolsa ham loader ketadi */
 const MAX_DURATION = 5000;
 /** So'nib yo'qolish vaqti */
-const FADE_DURATION = 600;
+const FADE_DURATION = 700;
 
 export function SiteLoader() {
   const [mounted, setMounted] = useState(true);
@@ -18,14 +18,15 @@ export function SiteLoader() {
     const started = Date.now();
     let fadeTimer = 0;
 
+    const startExit = () => {
+      setHiding(true);
+      fadeTimer = window.setTimeout(() => setMounted(false), FADE_DURATION);
+    };
+
     const finish = () => {
       const elapsed = Date.now() - started;
       const wait = Math.max(0, RING_DURATION - elapsed);
-
-      window.setTimeout(() => {
-        setHiding(true);
-        fadeTimer = window.setTimeout(() => setMounted(false), FADE_DURATION);
-      }, wait);
+      window.setTimeout(startExit, wait);
     };
 
     if (document.readyState === "complete") {
@@ -34,10 +35,7 @@ export function SiteLoader() {
       window.addEventListener("load", finish, { once: true });
     }
 
-    const failsafe = window.setTimeout(() => {
-      setHiding(true);
-      fadeTimer = window.setTimeout(() => setMounted(false), FADE_DURATION);
-    }, MAX_DURATION);
+    const failsafe = window.setTimeout(startExit, MAX_DURATION);
 
     return () => {
       window.removeEventListener("load", finish);
@@ -58,17 +56,21 @@ export function SiteLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[200] flex items-center justify-center bg-[#5F6E4D] transition-opacity duration-[600ms] ease-in-out ${
-        hiding ? "pointer-events-none opacity-0" : "opacity-100"
+      className={`fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[#5F6E4D] transition-all duration-700 ease-in-out ${
+        hiding ? "pointer-events-none scale-[1.04] opacity-0" : "opacity-100"
       }`}
     >
+      {/* Sekin suzuvchi yorug'lik dog'lari - fonga chuqurlik beradi */}
+      <span className="loader-glow loader-glow-a pointer-events-none absolute h-[38rem] w-[38rem] rounded-full bg-white/[0.07] blur-3xl" />
+      <span className="loader-glow loader-glow-b pointer-events-none absolute h-[30rem] w-[30rem] rounded-full bg-black/10 blur-3xl" />
+
       <div className="relative flex h-[280px] w-[280px] items-center justify-center sm:h-[360px] sm:w-[360px]">
-        {/*
-          Halqa sekin-asta chiziladi.
-          Animatsiya "loaderRing" nomi bilan globals.css da yozilgan:
-          stroke-dashoffset 604 dan 0 gacha kamayadi (604 - doira uzunligi).
-          -90 daraja burilgan, shuning uchun chizish tepadan boshlanadi.
-        */}
+        {/* Suvga tomchi tushgandek tarqaluvchi halqalar */}
+        <span className="loader-ripple loader-ripple-1 pointer-events-none absolute inset-0 rounded-full border border-white/25" />
+        <span className="loader-ripple loader-ripple-2 pointer-events-none absolute inset-0 rounded-full border border-white/20" />
+        <span className="loader-ripple loader-ripple-3 pointer-events-none absolute inset-0 rounded-full border border-white/15" />
+
+        {/* Chizilib boruvchi halqa */}
         <svg
           viewBox="0 0 200 200"
           className="absolute inset-0 h-full w-full -rotate-90"
@@ -93,6 +95,12 @@ export function SiteLoader() {
           />
         </svg>
 
+        {/* Halqa uchida yurib boruvchi yorug' nuqta */}
+        <span className="loader-orbit pointer-events-none absolute h-[96%] w-[96%]">
+          <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_12px_4px_rgba(255,255,255,0.55)]" />
+        </span>
+
+        {/* Logo */}
         <div className="loader-logo relative px-12">
           <Image
             src="/logo-white.png"
