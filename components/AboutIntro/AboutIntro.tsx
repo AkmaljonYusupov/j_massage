@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Phone } from "lucide-react";
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -26,6 +26,52 @@ const item = {
   hidden: { opacity: 0, y: 26 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
+
+/**
+ * Noldan berilgan songacha sanaydi - blok ekranga kirganda bir marta.
+ * Raqam ortidagi belgi ("+", "k+") o'zgarmasdan qoladi.
+ */
+function CountUp({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const reduceMotion = useReducedMotion();
+
+  // "500+" -> raqam 500, qo'shimcha "+"
+  const target = parseInt(value.replace(/\D/g, ""), 10) || 0;
+  const suffix = value.replace(/[0-9]/g, "");
+
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    if (reduceMotion) {
+      setShown(target);
+      return;
+    }
+
+    const duration = 1600;
+    const started = performance.now();
+    let frame = 0;
+
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - started) / duration);
+      // easeOutCubic - oxiriga borib sekinlashadi
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setShown(Math.round(target * eased));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, target, reduceMotion]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {shown}
+      {suffix}
+    </span>
+  );
+}
 
 interface ShineImageProps {
   src: string;
@@ -159,7 +205,7 @@ export function AboutIntro() {
                   )}
                 >
                   <p className="text-[2rem] font-extrabold leading-none tracking-tight">
-                    {stat.value}
+                    <CountUp value={stat.value} />
                   </p>
                   <p className="mt-2.5 max-w-[15rem] text-sm leading-relaxed text-revoza-ink/60">
                     {t(stat.key)}

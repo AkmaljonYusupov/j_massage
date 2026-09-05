@@ -196,5 +196,18 @@
     "q5": "Kursdan keyin ishga joylashishga yordam beradimi?",
     "a5": "Bitiruvchilarimizga ish boshlash bo'yicha maslahat beramiz va imkoniyat bo'lganda tanish salonlarga tavsiya qilamiz.",
     "imageCaption": "Har bir dars amaliyot bilan mustahkamlanadi"
+  },
+  "aboutWhy": {
+    "badge": "Nega aynan biz",
+    "titleLine1": "Massajni o'rganish uchun",
+    "titleLine2": "eng to'g'ri joy",
+    "description": "Zamonaviy jihozlangan xonalar, kichik guruhlar va amaliyotga asoslangan dastur - bularning barchasi shogird qisqa vaqtda mustaqil ishlay boshlashi uchun.",
+    "sinceLabel": "Faoliyat boshlagan yil",
+    "yearsLabel": "Yillik ta'lim tajribasi",
+    "cardOneTitle": "Sertifikatlangan murabbiylar",
+    "cardOneText": "Jamoamiz amaliyotda ishlaydigan, o'z yo'nalishi bo'yicha tajribali mutaxassislardan iborat.",
+    "cardOneNote": "Har bir dars amaliyot bilan",
+    "cardTwoText": "Yillar davomida sayqallangan dastur va yuzlab bitiruvchi tajribasi.",
+    "cta": "Hoziroq bog'laning"
   }
 }
