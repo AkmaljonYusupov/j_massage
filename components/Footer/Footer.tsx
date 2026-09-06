@@ -71,8 +71,7 @@ export function Footer() {
             <div className="relative mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-nowrap sm:gap-3">
               <Link
                 href="/contact"
-                data-ripple
-                className="ripple-btn ripple-sage-dark group inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-white pl-2 pr-5 text-[15px] font-bold text-revoza-sage-dark transition-all duration-300 hover:-translate-y-0.5 hover:text-white sm:h-[50px] sm:w-auto sm:shrink-0 sm:pr-4 sm:text-[14.5px]"
+                className="hover-fill fill-sage-dark group inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full bg-white pl-2 pr-5 text-[15px] font-bold text-revoza-sage-dark transition-all duration-300 hover:-translate-y-0.5 hover:text-white sm:h-[50px] sm:w-auto sm:shrink-0 sm:pr-4 sm:text-[14.5px]"
               >
                 <motion.span
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-revoza-sage-dark text-white transition-transform duration-300 group-hover:scale-105"
@@ -96,8 +95,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label={t("footer.telegramCta")}
                 title={t("footer.telegramCta")}
-                data-ripple
-                className="ripple-btn ripple-telegram inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent sm:h-[50px] sm:w-auto sm:shrink-0 sm:px-4"
+                className="hover-fill fill-telegram inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent sm:h-[50px] sm:w-auto sm:shrink-0 sm:px-4"
               >
                 <TelegramIcon className="h-[18px] w-[18px] shrink-0" />
                 <span className="whitespace-nowrap text-[15px] font-bold sm:text-[14.5px]">

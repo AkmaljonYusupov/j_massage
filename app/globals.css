@@ -198,38 +198,34 @@
 }
 
 /* ============================================================
-   TUGMA EFFEKTI
-   Sichqoncha kirgan nuqtadan tarqaladigan to'ldirish.
+   TUGMA EFFEKTLARI
 
-   Ishlatish: tugmaga ikkita narsa qo'shiladi -
-     data-ripple  va  className="ripple-btn ripple-ink"
+   1) .ripple-btn - kursor kirgan tomondan surilib kiradigan to'ldirish.
+      Faqat Navbar va HomeHero da ishlatiladi (RippleProvider kerak).
 
-   Rang variantlari: ripple-ink, ripple-sage, ripple-sage-dark,
-   ripple-white, ripple-telegram.
+   2) .hover-fill - pastdan kengayib chiqadigan doira.
+      Qolgan barcha tugmalar uchun. Faqat CSS, JS talab qilmaydi.
+      Ishlatish: className="hover-fill fill-sage ..."
    ============================================================ */
+
+/* ---------- 1) Kursor yo'nalishiga qarab to'ldirish ---------- */
 .ripple-btn {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  /* Matn rangi to'ldirish yetib kelgan payt o'zgarishi uchun */
   transition-property: color, transform, box-shadow, border-color;
-  transition-duration: 420ms;
+  transition-duration: 380ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ripple-btn::before {
   content: "";
   position: absolute;
-  left: var(--rx, 50%);
-  top: var(--ry, 50%);
-  width: 2.5rem;
-  height: 2.5rem;
-  margin: -1.25rem 0 0 -1.25rem;
-  border-radius: 9999px;
+  inset: 0;
+  border-radius: inherit;
   background-color: var(--ripple-color, rgba(0, 0, 0, 0.9));
-  transform: scale(0);
-  /* Yig'ilish tezroq, yoyilish sekinroq - tabiiy tuyuladi */
-  transition: transform 420ms cubic-bezier(0.4, 0, 1, 1);
+  transform: translate(calc(var(--ex, 0) * 101%), calc(var(--ey, 1) * 101%));
+  transition: transform 380ms cubic-bezier(0.4, 0, 1, 1);
   pointer-events: none;
   z-index: -1;
 }
@@ -237,23 +233,20 @@
 .ripple-btn:hover::before,
 .ripple-btn:focus-visible::before,
 .ripple-btn:active::before {
-  transform: scale(24);
-  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate(0, 0);
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Doira ostida qolib ketmasligi uchun mazmun tepaga ko'tariladi */
 .ripple-btn > * {
   position: relative;
   z-index: 1;
 }
 
-/* O'chirilgan tugmada effekt bo'lmaydi */
 .ripple-btn:disabled::before,
 .ripple-btn[aria-disabled="true"]::before {
   display: none;
 }
 
-/* --- Rang variantlari --- */
 .ripple-ink {
   --ripple-color: #1c1a17;
 }
@@ -270,9 +263,68 @@
   --ripple-color: #229ed9;
 }
 
-/* Harakatni kamaytirish yoqilganda effekt o'chadi */
+/* ---------- 2) Pastdan kengayadigan doira ---------- */
+.hover-fill {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition-property: color, transform, box-shadow, border-color;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-fill::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2rem;
+  height: 2rem;
+  margin: -1rem 0 0 -1rem;
+  border-radius: 9999px;
+  background-color: var(--fill-color, #ffffff);
+  transform: scale(0);
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hover-fill:hover::before,
+.hover-fill:focus-visible::before,
+.hover-fill:active::before {
+  transform: scale(20);
+}
+
+.hover-fill > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hover-fill:disabled::before,
+.hover-fill[aria-disabled="true"]::before {
+  display: none;
+}
+
+.fill-ink {
+  --fill-color: #1c1a17;
+}
+.fill-sage {
+  --fill-color: #7a8c64;
+}
+.fill-sage-dark {
+  --fill-color: #5f6e4d;
+}
+.fill-white {
+  --fill-color: #ffffff;
+}
+.fill-telegram {
+  --fill-color: #229ed9;
+}
+
+/* Harakatni kamaytirish yoqilganda effektlar o'chadi */
 @media (prefers-reduced-motion: reduce) {
-  .ripple-btn::before {
+  .ripple-btn::before,
+  .hover-fill::before {
     display: none;
   }
 }

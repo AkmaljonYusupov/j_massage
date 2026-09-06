@@ -291,8 +291,7 @@ export function ServicesSection() {
 
             <Link
               href="/courses"
-              data-ripple
-              className="ripple-btn ripple-sage group mt-7 inline-flex h-12 items-center gap-2.5 rounded-full bg-revoza-sage-dark pl-2 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="hover-fill fill-sage group mt-7 inline-flex h-12 items-center gap-2.5 rounded-full bg-revoza-sage-dark pl-2 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
             >
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight className="h-4 w-4" />

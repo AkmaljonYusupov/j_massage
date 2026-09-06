@@ -5,40 +5,63 @@ import { useEffect } from "react";
 /**
  * Butun sayt bo'ylab ishlaydigan yagona tinglovchi.
  *
- * Sichqoncha tugmaga KIRGAN nuqtani ham, undan CHIQQAN nuqtani ham
- * CSS o'zgaruvchilariga (--rx, --ry) yozib qo'yadi. Shu sababli
- * to'ldirish kirgan joydan yoyiladi va chiqqan joyga qarab yig'iladi -
- * harakat sichqonchani "ergashib" boradi.
+ * Sichqoncha tugmaning qaysi TOMONIDAN kirganini aniqlaydi va shu
+ * yo'nalishni CSS o'zgaruvchilariga (--ex, --ey) yozadi. To'ldirish
+ * o'sha tomondan surilib kiradi. Sichqoncha chiqqanda esa chiqish
+ * tomoni yoziladi va to'ldirish o'sha tomonga surilib chiqadi.
  *
  * Telefonlarda hover yo'q, shuning uchun barmoq tekkan nuqta ham
  * hisobga olinadi va effekt bosilganda ishlaydi.
  */
 export function RippleProvider() {
   useEffect(() => {
-    const setPoint = (el: HTMLElement, clientX: number, clientY: number) => {
+    /** Nuqta qaysi chetga eng yaqin ekanini aniqlaydi */
+    const setDirection = (
+      el: HTMLElement,
+      clientX: number,
+      clientY: number
+    ) => {
       const rect = el.getBoundingClientRect();
-      el.style.setProperty("--rx", `${clientX - rect.left}px`);
-      el.style.setProperty("--ry", `${clientY - rect.top}px`);
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      const distances = [
+        { edge: "left", value: x },
+        { edge: "right", value: rect.width - x },
+        { edge: "top", value: y },
+        { edge: "bottom", value: rect.height - y },
+      ];
+
+      const nearest = distances.reduce((a, b) => (a.value < b.value ? a : b));
+
+      const vectors: Record<string, [number, number]> = {
+        left: [-1, 0],
+        right: [1, 0],
+        top: [0, -1],
+        bottom: [0, 1],
+      };
+
+      const [ex, ey] = vectors[nearest.edge];
+      el.style.setProperty("--ex", `${ex}`);
+      el.style.setProperty("--ey", `${ey}`);
     };
 
-    const onPointerMove = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const el = target?.closest<HTMLElement>("[data-ripple]");
-      if (!el) return;
-      // Faqat effekt hali boshlanmagan bo'lsa yangilanadi
-      if (el.dataset.rippleActive === "1") return;
+    const onEnter = (event: MouseEvent) => {
+      const el = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+        "[data-ripple]"
+      );
+      if (!el || el.dataset.rippleActive === "1") return;
       el.dataset.rippleActive = "1";
-      setPoint(el, event.clientX, event.clientY);
+      setDirection(el, event.clientX, event.clientY);
     };
 
-    const onPointerLeave = (event: MouseEvent) => {
+    const onLeave = (event: MouseEvent) => {
       const el = (event.target as HTMLElement | null)?.closest<HTMLElement>(
         "[data-ripple]"
       );
       if (!el) return;
       delete el.dataset.rippleActive;
-      // Chiqish nuqtasi: doira o'sha tomonga yig'iladi
-      setPoint(el, event.clientX, event.clientY);
+      setDirection(el, event.clientX, event.clientY);
     };
 
     const onTouch = (event: TouchEvent) => {
@@ -47,16 +70,16 @@ export function RippleProvider() {
       );
       const touch = event.touches[0];
       if (!el || !touch) return;
-      setPoint(el, touch.clientX, touch.clientY);
+      setDirection(el, touch.clientX, touch.clientY);
     };
 
-    document.addEventListener("mouseover", onPointerMove);
-    document.addEventListener("mouseout", onPointerLeave);
+    document.addEventListener("mouseover", onEnter);
+    document.addEventListener("mouseout", onLeave);
     document.addEventListener("touchstart", onTouch, { passive: true });
 
     return () => {
-      document.removeEventListener("mouseover", onPointerMove);
-      document.removeEventListener("mouseout", onPointerLeave);
+      document.removeEventListener("mouseover", onEnter);
+      document.removeEventListener("mouseout", onLeave);
       document.removeEventListener("touchstart", onTouch);
     };
   }, []);

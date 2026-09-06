@@ -133,8 +133,7 @@ export function InstagramSection() {
             href={INSTAGRAM_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            data-ripple
-            className="ripple-btn ripple-sage group inline-flex h-12 shrink-0 items-center gap-2.5 self-start rounded-full bg-revoza-sage-dark pl-2 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5 sm:self-auto"
+            className="hover-fill fill-sage group inline-flex h-12 shrink-0 items-center gap-2.5 self-start rounded-full bg-revoza-sage-dark pl-2 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5 sm:self-auto"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark transition-transform duration-300 group-hover:rotate-45">
               <ArrowUpRight className="h-4 w-4" />

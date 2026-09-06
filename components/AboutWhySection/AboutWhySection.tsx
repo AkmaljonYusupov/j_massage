@@ -255,8 +255,7 @@ export function AboutWhySection() {
 
               <Link
                 href="/contact"
-                data-ripple
-                className="ripple-btn ripple-sage mt-8 inline-flex h-12 items-center gap-2.5 rounded-full bg-revoza-sage-dark pl-1.5 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
+                className="hover-fill fill-sage mt-8 inline-flex h-12 items-center gap-2.5 rounded-full bg-revoza-sage-dark pl-1.5 pr-6 text-[15px] font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <motion.span
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-revoza-sage-dark"
